@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
-  belongs_to :user
+  has_many_attached :images
+  has_many :likes
+  has_many :offers
 
-  validates :marque, :modele, :price, :content, :longueur, :hauteur, :largeur, :etat, :couleur, presence: true
-  validates :price, numericality: { greater_than: 0 }
+  validates :marque, :modele, :content, presence: true
 end
