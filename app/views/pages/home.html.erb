@@ -1,2 +1,9 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
+
+<h2>Produits aléatoires</h2>
+<ul>
+  <% @random_products.each do |product| %>
+    <li><%= product.modele %></li>
+  <% end %>
+</ul>
