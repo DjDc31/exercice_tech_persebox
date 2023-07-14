@@ -8,6 +8,9 @@ gem "rails", "~> 7.0.5"
 
 # ADD FOR CONFIG LAURENE CYRILLE
 gem "cloudinary"
+gem 'stripe'
+gem 'table_print'
+gem 'faker'
 
 
 
