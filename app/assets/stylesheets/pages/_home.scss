@@ -1,1 +1,26 @@
 // Specific CSS for your home-page
+.product-cards-home {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.product-card-item-home {
+  margin-right: 10px; /* Espacement entre les cartes */
+}
+
+.product-card-item-home:last-child {
+  margin-right: 0; /* Supprime l'espacement pour le dernier élément */
+}
+
+.product-image img {
+  width: 200px; /* Remplacez la valeur par celle de votre choix */
+  height: 200px; /* Remplacez la valeur par celle de votre choix */
+  object-fit: cover;
+}
+
+.title-home {
+  padding-top: 3%;
+  padding-bottom: 2%;
+  font-size: 17px;
+}

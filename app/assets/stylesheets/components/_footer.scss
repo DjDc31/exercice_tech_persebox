@@ -1,0 +1,53 @@
+.sub-footer-1 {
+  background-color: #242424;
+  color: white;
+  height: 200px;
+}
+
+.sub-footer-2 {
+  background-color: #0f0f0f;
+  color: white;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer {
+  position: static;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.information-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.information-links li {
+  display: flex;
+}
+
+.information-links li:not(:last-child) {
+  margin-right: 10px; /* Espacement entre les éléments de la liste */
+}
+
+.information-links li a {
+  text-decoration: none;
+  color: white; /* Couleur du texte des liens */
+}
+
+.information-links li::after {
+  content: "|";
+  margin-left: 10px; /* Espacement entre le trait vertical et le mot suivant */
+  margin-right: 10px; /* Espacement entre le trait vertical et le mot précédent */
+  color: white; /* Couleur du trait vertical */
+}
+
+.information-links {
+  margin-left: 25px;
+}

@@ -10,3 +10,32 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+  z-index: 1000; /* Assure que la navbar est affichée au-dessus des autres éléments */
+}
+
+.connection-nav ::after {
+  content: "|";
+  margin-left: 10px; /* Espacement entre le trait vertical et le mot suivant */
+  margin-right: 10px; /* Espacement entre le trait vertical et le mot précédent */
+  color: grey; /* Couleur du trait vertical */
+}
+
+.inscription-nav {
+  background-color: #6d6d6d;
+  border-radius: 10px;
+  color: white;
+}
+
+.inscription-nav:hover {
+  background-color: #000000;
+  border-radius: 10px;
+  color: white;
+}

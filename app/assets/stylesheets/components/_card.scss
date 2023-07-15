@@ -1,0 +1,85 @@
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 10px;
+  background-color: white;
+  width: 205px; /* taille de la card */
+  height: 311px; /* taille de la card */
+}
+
+.product-image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;}
+
+.product-image img {
+  max-width: 140px;
+  max-height: 130px;  /* taille de l'image */
+}
+
+.product-image .heart-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  // color: rgb(0, 0, 0);
+  font-size: 20px;
+}
+
+.product-details {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 52%;
+}
+
+.product-model {
+  // font-weight: bold;
+  white-space: nowrap; /* Empêche le texte de passer à la ligne */
+  overflow: hidden; /* Masque le texte dépassant de la div */
+  text-overflow: ellipsis;
+}
+
+.product-brand {
+  color: #777;
+}
+
+.product-offer {
+  margin-top: 10px;
+  margin-top: auto;
+
+}
+
+.lowest-price-label {
+color: #ccc;
+font-size: small;
+}
+
+.lowest-price {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.product-last-sale {
+  margin-top: 10px;
+  font-size: small;
+  margin-bottom: 5px; /* Réduire la marge inférieure */
+
+}
+
+.last-sale-label {
+  color: #777;
+}
+
+.last-sale-price {
+  // font-weight: bold;
+}
+
+.product-card p {
+  margin-bottom: 0;
+}
+
+.p-home {
+  margin-bottom: 1px;
+}
