@@ -1,3 +1,13 @@
-<%# <h1><%= @product.marque %></h1>
-<%# <p><%= @product.modele %></p>
+<h1><%= @product.marque %></h1>
+<p><%= @product.modele %></p>
 <!-- Add more product details here -->
+
+<div class="product-offers">
+  <% @product.offers.each do |offer| %>
+    <div class="offer">
+      <p><%= offer.user.nickname %></p>
+      <p><%= offer.etat %></p>
+      <p><%= offer.price %></p>
+    </div>
+  <% end %>
+</div>

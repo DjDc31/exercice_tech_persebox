@@ -1,0 +1,17 @@
+.products-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.product-card {
+  height: 250px;
+  width: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #8c1c13;
+  color: white;
+  .icon-like {
+    display: flex;
+    justify-content: end;
+  }
+}
