@@ -1,0 +1,28 @@
+.offer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.offer-item {
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+}
+
+.offer-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.offer-info p {
+  margin: 0;
+}
+
+.product-showimage {
+  max-width: 200px;
+  max-height: 200px;
+}

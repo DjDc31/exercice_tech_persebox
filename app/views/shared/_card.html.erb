@@ -1,3 +1,4 @@
+<a href="<%= product_path(product) %>" class="product-link">
 <div class="product-card">
   <div class="product-image">
     <%= image_tag product.images.first.url(resize_to_limit: [140, 75]), alt: product.modele %>
@@ -22,3 +23,4 @@
     </div>
   </div>
 </div>
+</a>

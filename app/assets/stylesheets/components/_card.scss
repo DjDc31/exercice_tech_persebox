@@ -83,3 +83,13 @@ font-size: small;
 .p-home {
   margin-bottom: 1px;
 }
+
+.product-link {
+  text-decoration: none; /* Supprimer le soulignement */
+  color: inherit; /* Utiliser la couleur par défaut du texte */
+}
+
+.product-link:hover {
+  color: inherit; /* Utiliser la couleur par défaut du texte lors du survol */
+  text-decoration: none; /* Supprimer le soulignement lors du survol */
+}

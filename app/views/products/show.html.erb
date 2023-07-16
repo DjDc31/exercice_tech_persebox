@@ -1,13 +1,25 @@
-<h1><%= @product.marque %></h1>
-<p><%= @product.modele %></p>
-<!-- Add more product details here -->
+<div class="product-details">
+  <h2><%= @product.modele %></h2>
+  <p>Marque: <%= @product.marque %></p>
+<% if @product.images.attached? %>
+  <%= image_tag @product.images.first, class: "product-showimage" %>
+<% end %>  <p>Description: <%= @product.content %></p>
+  <!-- Autres informations sur le produit -->
+</div>
 
-<div class="product-offers">
+<div class="offer-container">
   <% @product.offers.each do |offer| %>
-    <div class="offer">
-      <p><%= offer.user.nickname %></p>
-      <p><%= offer.etat %></p>
-      <p><%= offer.price %></p>
+    <div class="offer-item">
+      <%= link_to offer_path(offer) do %>
+        <div class="offer-info">
+          <p><%= offer.user.nickname %></p>
+          <p><%= offer.language %></p>
+          <p><%= offer.etat %></p>
+          <p><%= offer.extra %></p>
+          <p><%= offer.price %></p>
+          <p><i class="fa-solid fa-basket-shopping" style="color: #000000;"></i></p>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>

@@ -6,5 +6,5 @@ class Offer < ApplicationRecord
   validates :content, :price, presence: true
 
   validates :price, numericality: { greater_than: 0 }
-
+  validates_inclusion_of :etat, in: %w[Neuf_jamais_utilisee Neuf_deja_utilisee Tres_bon_etat Bon_etat Satisfaisant Abime]
 end

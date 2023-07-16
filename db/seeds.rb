@@ -326,7 +326,38 @@ user1 = User.first
 user2 = User.second
 
 # Créer des offres pour le produit
-offer1 = Offer.create!(user: user1, product: product_ps5, price: 39.99, extra: true, content: 'Avec en extra le moule cartonné pour la console.', language: 'FR', etat: 'Neuf')
-offer2 = Offer.create!(user: user2, product: product_ps5, price: 35, extra: false, content: 'Offre 2', language: 'EN', etat: 'Bon état')
+offer1 = Offer.create!(user: user1, product: product_ps5, price: 39.99, extra: true, content: 'Avec en extra le moule cartonné pour la console.', language: 'FR', etat: 'Neuf_deja_utilisee')
+offer2 = Offer.create!(user: user2, product: product_ps5, price: 35, extra: false, content: 'Offre 2', language: 'EN', etat: 'Bon_etat')
+
+# ...
+
+puts "Creating Offers..."
+
+users = User.all
+products = Product.all
+etats = [
+  'Neuf_jamais_utilisee',
+  'Neuf_deja_utilisee',
+  'Tres_bon_etat',
+  'Bon_etat',
+  'Satisfaisant',
+  'Abime'
+]
+
+
+users.each do |user|
+  products.each do |product|
+    offer = Offer.create!(
+      user: user,
+      product: product,
+      price: Faker::Commerce.price(range: 5.50..55),
+      extra: Faker::Boolean.boolean,
+      content: Faker::Lorem.sentence,
+      language: Faker::Nation.language,
+      etat: etats.sample
+    )
+    puts "Offer created for user #{user.nickname} and product #{product.modele}"
+  end
+end
 
 puts "Terminé !"
