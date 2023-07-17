@@ -7,4 +7,56 @@ class Offer < ApplicationRecord
 
   validates :price, numericality: { greater_than: 0 }
   validates_inclusion_of :etat, in: %w[Neuf_jamais_utilisee Neuf_deja_utilisee Tres_bon_etat Bon_etat Satisfaisant Abime]
+
+  def self.formatted_etat_options
+    {
+      'Neuf_jamais_utilisee' => 'Neuf jamais utilisée',
+      'Neuf_deja_utilisee' => 'Neuf déjà utilisée',
+      'Tres_bon_etat' => 'Très bon état',
+      'Bon_etat' => 'Bon état',
+      'Satisfaisant' => 'Satisfaisant',
+      'Abime' => 'Abîmée'
+    }.invert
+  end
+
+
+  def self.language_options
+    [
+      ['Français', 'fr'],
+      ['Allemand', 'de'],
+      ['Anglais', 'en'],
+      ['Arabe', 'ar'],
+      ['Bengali', 'bn'],
+      ['Bulgare', 'bg'],
+      ['Chinois', 'zh'],
+      ['Coréen', 'ko'],
+      ['Croate', 'hr'],
+      ['Danois', 'da'],
+      ['Espagnol', 'es'],
+      ['Estonien', 'et'],
+      ['Finnois', 'fi'],
+      ['Français', 'fr'],
+      ['Grec', 'el'],
+      ['Hindi', 'hi'],
+      ['Hongrois', 'hu'],
+      ['Italien', 'it'],
+      ['Japonais', 'ja'],
+      ['Letton', 'lv'],
+      ['Lituanien', 'lt'],
+      ['Néerlandais', 'nl'],
+      ['Norvégien', 'no'],
+      ['Polonais', 'pl'],
+      ['Portugais', 'pt'],
+      ['Roumain', 'ro'],
+      ['Russe', 'ru'],
+      ['Serbe', 'sr'],
+      ['Slovaque', 'sk'],
+      ['Slovène', 'sl'],
+      ['Suédois', 'sv'],
+      ['Tchèque', 'cs'],
+      ['Turc', 'tr'],
+      ['Autres', 'oo']
+    ]
+  end
+
 end

@@ -1,0 +1,14 @@
+<h1>Produits aimés par <%= current_user.nickname %></h1>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <h2 class="title-home">Votre selection</h2>
+      <ul class="product-cards-home">
+        <% @liked_products.each do |product| %>
+          <li class="product-card-item-home">
+            <%= render partial: 'shared/card', locals: { product: product } %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>

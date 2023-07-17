@@ -1,0 +1,11 @@
+<!-- select_product.html.erb -->
+<h1>Sélectionnez un produit</h1>
+<h2>Trouvez le produit que vous recherchez pour continuer</h2>
+
+<%= form_for @offer, url: create_offer_path, method: :post do |f| %>
+  <div class="form-group">
+    <%= f.label :product_id, "Produit" %>
+    <%= f.collection_select :product_id, @products, :id, :modele, {}, class: "form-control" %>
+  </div>
+  <%= f.submit "Continuer", class: "btn btn-primary" %>
+<% end %>

@@ -11,7 +11,8 @@
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;}
+  align-items: center;
+}
 
 .product-image img {
   max-width: 140px;
@@ -22,6 +23,14 @@
   position: absolute;
   top: 5px;
   right: 5px;
+  // color: rgb(0, 0, 0);
+  font-size: 20px;
+}
+
+.product-image .croix-icon {
+  position: absolute;
+  top: 5px;
+  left: 5px;
   // color: rgb(0, 0, 0);
   font-size: 20px;
 }

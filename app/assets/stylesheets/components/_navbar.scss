@@ -8,7 +8,11 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 145px;
+}
+
+.fa-circle-user:hover {
+  color: $box;
 }
 
 .navbar {
@@ -38,4 +42,55 @@
   background-color: #000000;
   border-radius: 10px;
   color: white;
+}
+
+.ms-2 {
+// margin-right: 41.5rem !important;
+width: 342px;
+}
+
+.container-fluid {
+  height: 55px;
+}
+
+.nav-link:hover {
+  color: $box;
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.dropdown-menu-left {
+  right: auto;
+  left: 0;
+}
+
+.hover-dropdown .dropdown-menu {
+  position: absolute;
+  top: 85%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+}
+
+.hover-dropdown .dropdown-menu.show {
+  display: block;
+}
+
+.hover-dropdown .dropdown-menu.dropdown-menu-end {
+  right: 0;
+  left: auto;
 }

@@ -326,12 +326,10 @@ user1 = User.first
 user2 = User.second
 
 # Créer des offres pour le produit
-offer1 = Offer.create!(user: user1, product: product_ps5, price: 39.99, extra: true, content: 'Avec en extra le moule cartonné pour la console.', language: 'FR', etat: 'Neuf_deja_utilisee')
-offer2 = Offer.create!(user: user2, product: product_ps5, price: 35, extra: false, content: 'Offre 2', language: 'EN', etat: 'Bon_etat')
+offer1 = Offer.create!(user: user1, product: product_ps5, price: 39.99, extra: true, content: 'Avec en extra le moule cartonné pour la console.', language: 'fr', etat: 'Neuf_deja_utilisee')
+offer2 = Offer.create!(user: user2, product: product_ps5, price: 35, extra: false, content: 'Offre 2', language: 'en', etat: 'Bon_etat')
 
 # ...
-
-puts "Creating Offers..."
 
 users = User.all
 products = Product.all
@@ -344,7 +342,6 @@ etats = [
   'Abime'
 ]
 
-
 users.each do |user|
   products.each do |product|
     offer = Offer.create!(
@@ -353,10 +350,27 @@ users.each do |user|
       price: Faker::Commerce.price(range: 5.50..55),
       extra: Faker::Boolean.boolean,
       content: Faker::Lorem.sentence,
-      language: Faker::Nation.language,
+      language: Offer.language_options.sample[1],
       etat: etats.sample
     )
-    puts "Offer created for user #{user.nickname} and product #{product.modele}"
+  end
+end
+
+puts "Creating Likes..."
+
+users = User.all
+products = Product.all
+
+products.each do |product|
+  # Sélectionner un nombre aléatoire de likes pour chaque produit
+  num_likes = rand(1..5)
+
+  # Sélectionner des utilisateurs aléatoires pour les likes
+  liked_users = users.sample(num_likes)
+
+  # Ajouter les likes pour le produit
+  liked_users.each do |user|
+    product.likes.create(user: user)
   end
 end
 

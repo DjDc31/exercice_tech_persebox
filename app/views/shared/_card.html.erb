@@ -1,26 +1,29 @@
 <a href="<%= product_path(product) %>" class="product-link">
-<div class="product-card">
-  <div class="product-image">
-    <%= image_tag product.images.first.url(resize_to_limit: [140, 75]), alt: product.modele %>
-    <span class="heart-icon"><i class="fa-regular fa-heart" style="color: #000000;"></i></span>
-  </div>
-  <div class="product-details">
-    <div class="p-home">
-    <p class="product-model"><%= product.modele %></p>
+  <div class="product-card">
+    <div class="product-image">
+      <%= image_tag product.images.first.url(resize_to_limit: [140, 75]), alt: product.modele %>
+              <% if user_signed_in? && current_user.likes.include?(product) %>
+        <span class="heart-icon"><i class="fa-solid fa-heart" style="color: #5AF388;"></i></span>
+        <span class="croix-icon"><i class="fa-regular fa-circle-xmark" style="color: #7a7a7a;"></i></span>
+      <% else %>
+        <span class="heart-icon"><i class="fa-regular fa-heart" style="color: #000000;"></i></span>
+      <% end %>
     </div>
-    <p class="product-brand"><%= product.marque %></p>
-      <div class="product-offer">
-            <% if product.offers.any? %>
-
-        <p class="lowest-price-label">Demande la plus basse</p>
-        <p class="lowest-price"><%= product.offers.first.price %> €</p>
-            <% end %>
-
+    <div class="product-details">
+      <div class="p-home">
+        <p class="product-model"><%= product.modele %></p>
       </div>
-    <div class="product-last-sale" style="background-color: #f5f5f5; padding: 2px; border-radius: 2px">
-      <span class="last-sale-label">Nombre d'offres :</span>
-      <span class="last-sale-price"><%= product.offers.count %></span>
+      <p class="product-brand"><%= product.marque %></p>
+      <div class="product-offer">
+        <% if product.offers.any? %>
+          <p class="lowest-price-label">Demande la plus basse</p>
+          <p class="lowest-price"><%= product.offers.first.price %> €</p>
+        <% end %>
+      </div>
+      <div class="product-last-sale" style="background-color: #f5f5f5; padding: 2px; border-radius: 2px">
+        <span class="last-sale-label">Nombre d'offres :</span>
+        <span class="last-sale-price"><%= product.offers.count %></span>
+      </div>
     </div>
   </div>
-</div>
 </a>
