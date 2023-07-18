@@ -21,11 +21,14 @@
 
 .product-image .heart-icon {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 228px;
+  right: -4px;
   // color: rgb(0, 0, 0);
   font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: normal;
 }
+
 
 .product-image .croix-icon {
   position: absolute;
@@ -101,4 +104,8 @@ font-size: small;
 .product-link:hover {
   color: inherit; /* Utiliser la couleur par défaut du texte lors du survol */
   text-decoration: none; /* Supprimer le soulignement lors du survol */
+}
+
+.card-padding-bottom {
+  padding-bottom: 20px;
 }

@@ -41,13 +41,13 @@
       <li class="nav-item">
         <% if user_signed_in? %>
           <%= link_to liked_products_path, class: "nav-link" do %>
-            <i class="far fa-regular fa-heart" style="color: #737373;"></i>
+            <i class="far fa-regular fa-heart default-color"></i>
           <% end %>
         <% end %>
       </li>
       <li class="nav-item">
         <%= link_to "#", class: "nav-link" do %>
-      <i class="far fa-comment fa-fw" style="color: #737373;"></i>
+      <i class="far fa-comment fa-fw default-color"></i>
         <% end %>
       </li>
     </ul>
@@ -59,14 +59,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-<li class="nav-item hover-dropdown" data-controller="dropdownnav">
+        <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
         <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-regular fa-circle-user" style="color: #737373;"></i>
+          <i class="fa-regular fa-circle-user default-color"></i>
         </a>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" data-dropdownnav-target="dropdownMenu">
-          <%# <li><%= link_to "Action", "#", class: "dropdown-item"</li> %>
-          <%# <li><%= link_to "Another action", "#", class: "dropdown-item"</li> %>
-          <li><%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %></li>
+          <li><%= link_to "Mon compte", "#", class: "dropdown-item"%></li>
+          <li><%= link_to "Mes achats", "#", class: "dropdown-item"%></li>
+          <li><%= link_to "Mes ventes", "#", class: "dropdown-item"%></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><%= link_to "Déconnexion", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %></li>
         </ul>
       </li>
 

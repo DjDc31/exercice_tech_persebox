@@ -1,14 +1,14 @@
-<a href="<%= product_path(product) %>" class="product-link">
-  <div class="product-card">
+  <div class="product-card" data-controller="like">
     <div class="product-image">
       <%= image_tag product.images.first.url(resize_to_limit: [140, 75]), alt: product.modele %>
-              <% if user_signed_in? && current_user.likes.include?(product) %>
-        <span class="heart-icon"><i class="fa-solid fa-heart" style="color: #5AF388;"></i></span>
-        <span class="croix-icon"><i class="fa-regular fa-circle-xmark" style="color: #7a7a7a;"></i></span>
-      <% else %>
-        <span class="heart-icon"><i class="fa-regular fa-heart" style="color: #000000;"></i></span>
-      <% end %>
+    <% if user_signed_in? && current_user.likes.exists?(product: product) %>
+      <%= render 'shared/unlike_button', product: product %>
+    <% else %>
+      <%= render 'shared/like_button', product: product %>
+    <% end %>
     </div>
+    <a href="<%= product_path(product) %>" class="product-link">
+
     <div class="product-details">
       <div class="p-home">
         <p class="product-model"><%= product.modele %></p>
