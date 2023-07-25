@@ -16,13 +16,23 @@ class Offer < ApplicationRecord
       'Bon_etat' => 'Bon état',
       'Satisfaisant' => 'Satisfaisant',
       'Abime' => 'Abîmée'
-    }.invert
+    }
   end
+
+  def formatted_etat
+    Offer.formatted_etat_options[self.etat]
+  end
+
+  def self.formatted_etat_select_options
+    formatted_etat_options.map { |value, text| [text, value] }
+  end
+
 
 
   def self.language_options
     [
       ['Français', 'fr'],
+      ['Non spécifié', 'none'],
       ['Allemand', 'de'],
       ['Anglais', 'en'],
       ['Arabe', 'ar'],
@@ -55,7 +65,8 @@ class Offer < ApplicationRecord
       ['Suédois', 'sv'],
       ['Tchèque', 'cs'],
       ['Turc', 'tr'],
-      ['Autres', 'oo']
+      ['Autres', 'oo'],
+
     ]
   end
 

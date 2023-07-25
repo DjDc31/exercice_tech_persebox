@@ -4,14 +4,16 @@ export default class extends Controller {
   static targets = [ "likeButton", "unlikeButton" ]
 
   connect() {
-    // Votre code de configuration initiale ici, si nécessaire.
   }
 
   like(event) {
     event.preventDefault()
-    let button = event.target
+    let button = event.currentTarget
     let productId = button.getAttribute("data-product-id")
+    console.log(productId)
     let url = `/products/${productId}/like`
+    let likeButton = document.querySelector(`.heart-icon-${productId}.like-button`)
+    let unlikeButton = document.querySelector(`.heart-icon-${productId}.unlike-button`)
 
     fetch(url, {
       method: "POST",
@@ -20,11 +22,15 @@ export default class extends Controller {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
+      credentials: 'same-origin', // Ajoutez cette ligne
     }).then((response) => {
       if (response.ok) {
         // Cachez le bouton "like", affichez le bouton "unlike".
-        this.likeButtonTarget.style.display = "none"
-        this.unlikeButtonTarget.style.display = "block"
+        likeButton.style.display = "none"
+        unlikeButton.style.display = "block"
+      } else if (response.status === 401) { // code HTTP pour non autorisé
+        // Redirigez vers la page de connexion si l'utilisateur n'est pas connecté.
+        window.location.href = "/users/sign_in";
       } else {
         // Gérez l'erreur.
         console.log("Erreur lors de la tentative de like du produit.")
@@ -34,9 +40,13 @@ export default class extends Controller {
 
   unlike(event) {
     event.preventDefault()
-    let button = event.target
+    let button = event.currentTarget
     let likeId = button.getAttribute("data-like-id")
+    console.log(likeId)
     let url = `/likes/${likeId}`
+    let productId = button.getAttribute("data-product-id")
+    let likeButton = document.querySelector(`.heart-icon-${productId}.like-button`)
+    let unlikeButton = document.querySelector(`.heart-icon-${productId}.unlike-button`)
 
     fetch(url, {
       method: "DELETE",
@@ -45,11 +55,12 @@ export default class extends Controller {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
+      credentials: 'same-origin', // Ajoutez cette ligne
     }).then((response) => {
       if (response.ok) {
         // Cachez le bouton "unlike", affichez le bouton "like".
-        this.likeButtonTarget.style.display = "block"
-        this.unlikeButtonTarget.style.display = "none"
+        likeButton.style.display = "block"
+        unlikeButton.style.display = "none"
       } else {
         // Gérez l'erreur.
         console.log("Erreur lors de la tentative de unlike du produit.")

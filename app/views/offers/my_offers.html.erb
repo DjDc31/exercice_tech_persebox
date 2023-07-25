@@ -1,0 +1,40 @@
+<h1 class="offers-title">Vos offres</h1>
+
+<table class="offers-table">
+  <tr>
+    <th></th> <!-- colonne pour l'image du prdt -->
+    <th>Marque</th>
+    <th>Produit</th>
+    <th>Prix</th>
+    <th><div class="pop-up-fav">
+        Extra
+        <span class="popupoff" data-popuptext="Accéssoire(s) Sup. ex: Ruban cadeau d'origine, papier de soie,..."><i class="fa-solid fa-circle-exclamation hover-icon" style="color: #7a7a7a;"></i></span>
+      </div>
+    </th>
+    <th>Langue</th>
+    <th>État</th>
+    <th></th> <!-- colonne pour le bouton de suppression -->
+  </tr>
+  <% @offers.each do |offer| %>
+    <tr>
+      <td class="product-image">
+        <% if offer.product.images.first %>
+          <%= image_tag offer.product.images.first.url, alt: offer.product.modele %>
+        <% end %>
+      </td>
+      <td><%= offer.product.marque %></td>
+      <td><%= link_to offer.product.modele, product_path(offer.product) %></td>
+      <td><%= number_to_currency(offer.price, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></td>
+      <td><%= offer.extra ? '<i class="fa-solid fa-check" style="color: #00f900;"></i>'.html_safe : '<i class="fa-solid fa-xmark" style="color: #000000;"></i>'.html_safe %></td>
+      <td>
+        <% language_option = Offer.language_options.find {|option| option[1] == offer.language } %>
+        <%= language_option ? language_option[0] : offer.language %>
+      </td>
+      <td><%= Offer.formatted_etat_options[offer.etat] %></td>
+      <td>
+        <%= link_to '<i class="fa-solid fa-pencil iconoff" style="color: #000000;"></i>'.html_safe, edit_offer_path(offer)%>
+        <%= link_to '<i class="fa-solid fa-circle-xmark iconoff" style="color: #e32400;"></i>'.html_safe, offer_path(offer), data: { confirm: "Êtes-vous sûr ?", turbo_confirm: "Êtes-vous sûr ?" }, method: :delete %>
+      </td>
+    </tr>
+  <% end %>
+</table>

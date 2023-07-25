@@ -1,3 +1,11 @@
-<h2>Offer details</h2>
-<p>Offer ID: <%= @offer.id %></p>
-<!-- Ajoutez d'autres informations spécifiques à l'offre ici -->
+<div class="offer-detail">
+  <h1>Détails de l'offre</h1>
+  <p><strong>Marque:</strong> <%= @offer.product.marque %></p>
+  <p><strong>Modèle:</strong> <%= @offer.product.modele %></p>
+  <p><strong>Prix:</strong> <%= number_to_currency(@offer.price, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></p>
+  <p><strong>Extra:</strong> <%= @offer.extra ? 'Oui' : 'Non' %></p>
+  <p><strong>Langue:</strong> <%= @offer.language %></p>
+  <p><strong>État:</strong> <%= @offer.etat %></p>
+
+  <%= link_to 'Modifier l\'offre', edit_offer_path(@offer), class: 'button' %>
+</div>

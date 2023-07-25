@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  resources :offers, only: [:show, :create]
+  resources :offers, only: [:show, :create, :destroy, :edit, :update]
   resources :products, only: [:index, :show] do
     resources :likes, only: [:create]
   end
@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   post '/create_offer', to: 'offers#create_offer', as: 'create_offer'
 
   get '/liked_products', to: 'products#liked', as: 'liked_products'
+  get '/my_offers', to: 'offers#my_offers', as: 'my_offers'
+
 end

@@ -1,35 +1,95 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2 class="login-heading">Modifier vos informations</h2>
+<div class="login-container">
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "account-form" }) do |f| %>
+    <%= f.error_notification %>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+    <div class="row">
+      <!-- Left Column for email and password -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-inputs">
+              <%= f.input :email,
+                          label: 'E-mail',
+                          required: true,
+                          autofocus: true,
+                          label_html: { class: "form-label" },
+                          wrapper_html: { class: "form-field" } %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <p>En attente de confirmation pour : <%= resource.unconfirmed_email %></p>
+              <% end %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+              <%= f.input :password,
+                          label: 'Mot de passe',
+                          hint: "Laissez vide si vous ne voulez pas le changer",
+                          required: false,
+                          input_html: { autocomplete: "new-password" },
+                          label_html: { class: "form-label" },
+                          wrapper_html: { class: "form-field" } %>
+              <%= f.input :password_confirmation,
+                          label: 'Confirmation du mot de passe',
+                          required: false,
+                          input_html: { autocomplete: "new-password" },
+                          label_html: { class: "form-label" },
+                          wrapper_html: { class: "form-field" } %>
+              <%= f.input :current_password,
+                          label: 'Mot de passe actuel',
+                          hint: "Nous avons besoin de votre mot de passe actuel pour confirmer vos modifications",
+                          required: true,
+                          input_html: { autocomplete: "current-password" },
+                          label_html: { class: "form-label" },
+                          wrapper_html: { class: "form-field" } %>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
-  </div>
+      <!-- Right Column for the rest of the information -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-inputs">
+              <%= f.input :nickname,
+                          label: 'Pseudo',
+                          label_html: { class: "form-label" },
+                          wrapper_html: { class: "form-field" } %>
+              <%= f.input :first_name,
+                          label: 'Prénom',
+                          label_html: { class: "form-label" },
+                          wrapper_html: { class: "form-field" } %>
+              <%= f.input :last_name,
+                          label: 'Nom',
+                          label_html: { class: "form-label" },
+                          wrapper_html: { class: "form-field" } %>
+              <%= f.input :address,
+                          label: 'Adresse',
+                          label_html: { class: "form-label" },
+                          wrapper_html: { class: "form-field" } %>
+              <%= f.input :date_birth,
+                          label: 'Date de naissance',
+                          as: :date,
+                          start_year: Date.today.year - 100,
+                          end_year: Date.today.year - 12,
+                          label_html: { class: "form-label" },
+                          wrapper_html: { class: "form-field" } %>
+              <%= f.input :description,
+                          label: 'Description',
+                          as: :text,
+                          label_html: { class: "form-label" },
+                          wrapper_html: { class: "form-field" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
+<div class="form-actions d-flex justify-content-between">
+  <%= f.button :submit, "Mettre à jour", class: "btn btn-primary" %>
+  <%# <%= link_to "Retour", :back %>
+  <%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Êtes-vous sûr ?", turbo_confirm: "Êtes-vous sûr ?" }, method: :delete%>
+</div>
 
-<h3>Cancel my account</h3>
+  <% end %>
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>

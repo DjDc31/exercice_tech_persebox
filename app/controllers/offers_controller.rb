@@ -27,6 +27,37 @@ class OffersController < ApplicationController
     @offer = Offer.new
   end
 
+  def my_offers
+    @offers = current_user.offers.joins(:product).order('products.marque ASC')
+  end
+
+
+  def destroy
+    @offer = Offer.find(params[:id])
+
+    if @offer.user == current_user
+      @offer.destroy
+      flash[:notice] = "L'offre a été supprimée avec succès."
+    else
+      flash[:alert] = "Vous n'avez pas le droit de supprimer cette offre."
+    end
+
+    redirect_to my_offers_path
+  end
+
+  def edit
+    @offer = Offer.find(params[:id])
+  end
+
+  def update
+    @offer = Offer.find(params[:id])
+    if @offer.update(offer_params)
+      redirect_to my_offers_path, notice: 'L\'offre a été modifiée avec succès.'
+    else
+      render :edit
+    end
+  end
+
   private
 
   def offer_params
