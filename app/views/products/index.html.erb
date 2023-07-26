@@ -1,15 +1,84 @@
-
 <% if params[:query].present? %>
-  <h1 class="header">Nos produits pour '<%= params[:query] %>'</h1>
+  <div class="card-horizontal">
+    <h1 class="header">Nos produits pour <%= params[:query] %></h1>
+    <p>Achetez et vendez des articles correspondant à <%= params[:query] %> sur Persébox.</p>
+  </div>
 <% else %>
-  <h1 class="header">Nos produits</h1>
+  <div class="card-horizontal">
+    <h1 class="header">Nos produits</h1>
+  </div>
 <% end %>
 
-<div class="products-container">
+<!-- Ajouter le sélecteur de tri ici -->
+<div class="sort-selector" style="float: right; margin-right: 65px;">
+  <%= form_with(url: products_path, method: "get", local: true) do |f| %>
+    <%= f.hidden_field :query, value: params[:query] %>
+    <%= f.select :sort, options_for_select([['Prix croissant', 'price_asc'], ['Prix décroissant', 'price_desc'], ['Ordre alphabétique', 'alphabetical']], selected: params[:sort]) %>
+    <%= f.submit "Trier" %>
+  <% end %>
+</div>
+
+
+
+
+<div class="container index-cont">
+  <div class="row">
+    <div class="col-2">
+      <!-- Votre contenu de la colonne de gauche -->
+      <div class="brand">
+        <h4><%= link_to 'Mode', products_path(query: 'Mode') %></h4>
+      </div>
+      <div class="brand">
+        <h4><%= link_to 'Jeux-vidéo', products_path(query: 'Jeux-vidéo') %></h4>
+      </div>
+      <div class="brand">
+        <h4><%= link_to 'Militaire', products_path(query: 'Militaire') %></h4>
+      </div>
+      <br>
+      <div class="brand">
+        <h4><%= link_to 'Donnations', products_path(donations: true) %></h4>
+      </div>
+      <br>
+      <div class="brand">
+        <h4><%= link_to 'Nintendo', products_path(query: 'Nintendo') %></h4>
+      </div>
+      <div class="brand">
+        <h4><%= link_to 'Pokémon', products_path(query: 'Pokémon') %></h4>
+      </div>
+      <div class="brand">
+        <h4><%= link_to 'Chanel', products_path(query: 'Chanel') %></h4>
+      </div>
+      <div class="brand">
+        <h4><%= link_to 'Christian Louboutin', products_path(query: 'Christian Louboutin') %></h4>
+      </div>
+      <div class="brand">
+        <h4><%= link_to 'Gucci', products_path(query: 'Gucci') %></h4>
+      </div>
+      <div class="brand">
+        <h4><%= link_to 'Versace', products_path(query: 'Versace') %></h4>
+      </div>
+      <div class="brand">
+        <h4><%= link_to 'Playstation', products_path(query: 'Playstation') %></h4>
+      </div>
+      <div class="brand">
+        <h4><%= link_to 'Xbox', products_path(query: 'Xbox') %></h4>
+      </div>
+    </div>
+
+    <div class="col-10">
+      <div class="products-container">
+        <% if @products.empty? %>
+  <p>Aucun produit trouvé.</p>
+<% else %>
   <% @products.each do |product| %>
     <div>
       <%= render partial: 'shared/card', locals: { product: product } %>
       <br>
     </div>
   <% end %>
+<% end %>
+
+      </div>
+    </div>
+  </div>
 </div>

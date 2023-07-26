@@ -17,30 +17,31 @@
       </div>
 
     <ul class="navbar-nav ms-auto">
-      <%# <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
+      <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
         <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Parcourir
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="browseDropdown" data-dropdownnav-target="dropdownMenu">
-          <li><%= link_to "Louis Vuitton", "#", class: "dropdown-item"</li>
-          <li><%= link_to "Nintendo", "#", class: "dropdown-item"</li>
-          <li><%= link_to "Hermés", "#", class: "dropdown-item"</li>
+          <li><%= link_to "Louis Vuitton", "#", class: "dropdown-item"%></li>
+          <li><%= link_to "Nintendo", "#", class: "dropdown-item"%></li>
+          <li><%= link_to "Hermés", "#", class: "dropdown-item"%></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#">Geek Space</a></li>
-          <li><a class="dropdown-item" href="#">Maroquinerie</a></li> %>
-        <%# </ul>
-      </li>  %>
+          <li><a class="dropdown-item" href="#">Maroquinerie</a></li>
+        </ul>
+      </li>
 
-      <%# <li class="nav-item"> %>
-        <%# link_to "À propos", "#", class: "nav-link" %>
-      <%# </li> %>
-      <%# <li class="nav-item"> %>
-        <%# link_to "Aide", "#", class: "nav-link" %>
-      <%# </li> %>
+      <li class="nav-item">
+        <% link_to "À propos", "#", class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <% link_to "Aide", "#", class: "nav-link" %>
+      </li>
       <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
         <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <% if user_signed_in? %>
-          <i class="fa-solid fa-plus default-color icon-navbar"></i>
+          <%# <i class="fa-solid fa-plus default-color icon-navbar"></i> %>
+          Vendre
         <% else %>
           Vendre
         <% end %>
@@ -85,9 +86,17 @@
       </li>
 
         <% else %>
-          <li class="nav-item">
+          <%# <li class="nav-item">
             <%= link_to "Se connecter | S'inscrire", new_user_registration_path, class: "nav-link inscription-nav" %>
-          </li>
+          <%# </li> %>
+<li class="nav-item">
+  <span class="nav-link inscription-nav">
+    <%= link_to "Se connecter", new_user_session_path %> |
+    <%= link_to "S'inscrire", new_user_registration_path %>
+  </span>
+</li>
+
+
         <% end %>
       </ul>
     </div>

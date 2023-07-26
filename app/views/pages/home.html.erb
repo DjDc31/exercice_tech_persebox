@@ -1,4 +1,23 @@
+  <!-- Ajoutez cette partie pour la fausse navbar -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="pseudo-navbar" style="padding: 1px 0;">
+        <ul style="list-style: none; display: flex; justify-content: center;">
+          <li><%= link_to "Nintendo", products_path(query: "Nintendo"), style: "text-decoration: none;" %></li>
+          <li><%= link_to "Louis Vuitton", products_path(query: "Louis Vuitton"), style: "text-decoration: none;" %></li>
+          <li><%= link_to "Hermés", products_path(query: "Hermés"), style: "text-decoration: none;" %></li>
+          <li><%= link_to "Chanel", products_path(query: "Chanel"), style: "text-decoration: none;" %></li>
+          <li><%= link_to "Vintage", products_path(query: "vintage"), style: "text-decoration: none;" %></li>
+          <li><%= link_to "Geek", products_path(query: "Geek"), style: "text-decoration: none;" %></li>
+          <li><%= link_to "Collection", products_path(query: "Collection"), style: "text-decoration: none;" %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Fin de la fausse navbar -->
+
 <div class="container">
+
   <div class="row">
     <div class="col-lg-12">
       <div class="carousel-wrapper">
@@ -40,43 +59,53 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-lg-12">
-      <h2 class="title-home">Marques en tendance</h2>
-      <div class="marques-div">
+<div class="row">
+  <div class="col-lg-12">
+    <h2 class="title-home">Marques en tendance</h2>
+    <div class="marques-div">
+      <%= link_to products_path(query: "Louis Vuitton"), style: "text-decoration: none; color: inherit;" do %>
         <div class="card-marques">
           <%= image_tag("lv-boite.jpg", class: "card-img-top", alt: "Image de la marque Louis Vuitton") %>
           <div class="card-body-marques">
             <h5 class="card-title">Louis Vuitton</h5>
           </div>
         </div>
+      <% end %>
+      <%= link_to products_path(query: "Adidas"), style: "text-decoration: none; color: inherit;" do %>
         <div class="card-marques">
           <%= image_tag("adidas.jpg", class: "card-img-top", alt: "Image de la marque Adidas") %>
           <div class="card-body-marques">
             <h5 class="card-title">Adidas</h5>
           </div>
         </div>
+      <% end %>
+      <%= link_to products_path(query: "Apple"), style: "text-decoration: none; color: inherit;" do %>
         <div class="card-marques">
-      <%= image_tag("apple.jpg", class: "card-img-top", alt: "Image de la marque Apple") %>
+          <%= image_tag("apple.jpg", class: "card-img-top", alt: "Image de la marque Apple") %>
           <div class="card-body-marques">
-      <h5 class="card-title">Apple</h5>
+            <h5 class="card-title">Apple</h5>
           </div>
         </div>
+      <% end %>
+      <%= link_to products_path(query: "Chanel"), style: "text-decoration: none; color: inherit;" do %>
         <div class="card-marques">
-      <%= image_tag("chanel.jpg", class: "card-img-top", alt: "Image de la marque Chanel") %>
+          <%= image_tag("chanel.jpg", class: "card-img-top", alt: "Image de la marque Chanel") %>
           <div class="card-body-marques">
-      <h5 class="card-title">Chanel</h5>
+            <h5 class="card-title">Chanel</h5>
           </div>
         </div>
+      <% end %>
+      <%= link_to products_path(query: "Nike"), style: "text-decoration: none; color: inherit;" do %>
         <div class="card-marques">
-      <%= image_tag("nike.jpg", class: "card-img-top", alt: "Image de la marque Nike") %>
+          <%= image_tag("nike.jpg", class: "card-img-top", alt: "Image de la marque Nike") %>
           <div class="card-body-marques">
-      <h5 class="card-title">Nike</h5>
+            <h5 class="card-title">Nike</h5>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
+</div>
 
   <div class="row">
     <div class="col-lg-6">

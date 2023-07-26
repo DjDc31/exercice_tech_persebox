@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  belongs_to :offer
+
   has_many_attached :images
   has_many :likes
   has_many :offers

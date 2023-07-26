@@ -1,6 +1,7 @@
 class Offer < ApplicationRecord
   belongs_to :user
   belongs_to :product
+  has_one :product
 
   validates :user_id, :product_id, presence: true
   validates :content, :price, presence: true

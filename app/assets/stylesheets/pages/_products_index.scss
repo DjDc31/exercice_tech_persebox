@@ -1,6 +1,6 @@
 .products-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: center;
   width: 90%;
   margin-left: 100px;
@@ -10,4 +10,26 @@
   text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(89,243,137,0.3);
   font-family: $headers-font;
   font-size: 45px;
+}
+
+.card-horizontal {
+  margin-left: 100px;
+
+  width: 90%;
+  background-color: #f6f6f6;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.card-horizontal p {
+  padding: 20px 25px;
+}
+
+.index-cont {
+  margin-top: 55px;
+}
+
+.brand a:hover{
+  color: $box !important;
 }

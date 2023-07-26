@@ -41,7 +41,11 @@
 .inscription-nav:hover {
   background-color: #000000;
   border-radius: 10px;
-  color: white;
+  color: white !important;
+}
+
+.inscription-nav a:hover {
+  color: $box !important;
 }
 
 .ms-2 {

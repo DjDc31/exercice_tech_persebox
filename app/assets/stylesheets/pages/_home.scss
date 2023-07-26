@@ -132,3 +132,24 @@ span.popup {
   width: 180px !important;
   padding-top: 30px;
 }
+
+
+.pseudo-navbar {
+  margin-top: -13px;
+  background-color: rgb(232, 232, 232);
+  color: black;
+  font-weight: 500;
+  font-size: 19px;
+}
+.pseudo-navbar ul {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.pseudo-navbar a {
+  padding-left: 50px;
+}
+
+.pseudo-navbar a:hover {
+  color: black;
+}
