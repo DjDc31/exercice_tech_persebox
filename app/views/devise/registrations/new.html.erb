@@ -79,8 +79,9 @@
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "S'inscrire", class: "btn btn-primary" %>
-        <%= render "devise/shared/links" %>
+      <%= f.button :submit, "S'inscrire", class: "btn btn-primary" %> <br>
+      <br>
+      <p>Tu as déjà un compte ? <%= link_to 'Se connecter', new_user_session_path, class:"btn btn-primary" %></p>
 
     </div>
   <% end %>

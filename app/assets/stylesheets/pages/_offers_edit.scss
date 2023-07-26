@@ -14,26 +14,18 @@
   display: flex;
   justify-content: space-around;
   align-items: start;
+  margin-top: 40px;
 }
 
-.product-edit-prez, .form-edit-prez {
-  width: 45%;
+.product-edit-prez {
+  width: 600px;
+  height: 350px;
 }
 
 .product-edit-prez #product-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.offer-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.offer-form .form-group {
-  margin-bottom: 20px;
 }
 
 .btn-danger {

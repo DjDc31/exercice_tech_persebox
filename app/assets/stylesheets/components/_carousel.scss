@@ -1,8 +1,9 @@
 .custom-carousel {
+  margin-top: 60px;
   width: 100%;
 }
 
 .custom-carousel .carousel-item img {
-  max-height: 350px; /* Modifier cette valeur selon votre préférence */
+  max-height: 450px; /* Modifier cette valeur selon votre préférence */
   object-fit: cover;
 }

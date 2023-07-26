@@ -102,3 +102,19 @@ width: 342px;
 .default-color {
   color: #737373;
 }
+.second-navbar {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  position: fixed;
+  z-index: 1000;
+  background-color: white;
+  p {
+    opacity: 0.6;
+    font-size: 15px;
+    &:hover {
+      color: $box;
+    }
+  }
+}

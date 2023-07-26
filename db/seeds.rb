@@ -32,7 +32,7 @@ User.create!(
   email: 'lolodu35@gmail.com',
   password: '123456',
   nickname: 'Lolo',
-  first_name: 'Lauréne',
+  first_name: 'Laurène',
   last_name: 'Freyer',
   address: 'Rennes',
   type: Admin,

@@ -33,7 +33,7 @@
       <td><%= Offer.formatted_etat_options[offer.etat] %></td>
       <td>
         <%= link_to '<i class="fa-solid fa-pencil iconoff" style="color: #000000;"></i>'.html_safe, edit_offer_path(offer)%>
-        <%= link_to '<i class="fa-solid fa-circle-xmark iconoff" style="color: #e32400;"></i>'.html_safe, offer_path(offer), data: { confirm: "Êtes-vous sûr ?", turbo_confirm: "Êtes-vous sûr ?" }, method: :delete %>
+        <%= link_to '<i class="fa-solid fa-circle-xmark iconoff" style="color: #e32400;"></i>'.html_safe, offer_path(offer), data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr ?" } %>
       </td>
     </tr>
   <% end %>

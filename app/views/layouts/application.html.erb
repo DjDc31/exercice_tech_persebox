@@ -26,13 +26,17 @@
     </script>
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
+  <body>
+
+    <%= render "shared/navbar" %>
+    <%= render "shared/flashes" %>
 
     <%= yield %>
-  <%= render "shared/footer" %>
+
+    <%= render "shared/footer" %>
 
   </body>
+
   <script>
   window.axeptioSettings = {
     clientId: "64c024b507847c838b7fcac3",

@@ -31,18 +31,17 @@ class OffersController < ApplicationController
     @offers = current_user.offers.joins(:product).order('products.marque ASC')
   end
 
-
   def destroy
     @offer = Offer.find(params[:id])
 
     if @offer.user == current_user
       @offer.destroy
       flash[:notice] = "L'offre a été supprimée avec succès."
+      redirect_to my_offers_path
     else
       flash[:alert] = "Vous n'avez pas le droit de supprimer cette offre."
     end
 
-    redirect_to my_offers_path
   end
 
   def edit
@@ -54,7 +53,7 @@ class OffersController < ApplicationController
     if @offer.update(offer_params)
       redirect_to my_offers_path, notice: 'L\'offre a été modifiée avec succès.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

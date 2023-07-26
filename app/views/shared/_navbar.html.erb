@@ -9,47 +9,51 @@
     </form>
 
     <ul class="navbar-nav ms-auto">
-      <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
+      <%# <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
         <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Parcourir
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="browseDropdown" data-dropdownnav-target="dropdownMenu">
-          <li><%= link_to "Louis Vuitton", "#", class: "dropdown-item" %></li>
-          <li><%= link_to "Nintendo", "#", class: "dropdown-item" %></li>
-          <li><%= link_to "Hermés", "#", class: "dropdown-item" %></li>
+          <li><%= link_to "Louis Vuitton", "#", class: "dropdown-item"</li>
+          <li><%= link_to "Nintendo", "#", class: "dropdown-item"</li>
+          <li><%= link_to "Hermés", "#", class: "dropdown-item"</li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#">Geek Space</a></li>
-          <li><a class="dropdown-item" href="#">Maroquinerie</a></li>
-        </ul>
-      </li>
+          <li><a class="dropdown-item" href="#">Maroquinerie</a></li> %>
+        <%# </ul>
+      </li>  %>
 
-      <li class="nav-item">
-        <%= link_to "À propos", "#", class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Aide", "#", class: "nav-link" %>
-      </li>
+      <%# <li class="nav-item"> %>
+        <%# link_to "À propos", "#", class: "nav-link" %>
+      <%# </li> %>
+      <%# <li class="nav-item"> %>
+        <%# link_to "Aide", "#", class: "nav-link" %>
+      <%# </li> %>
       <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
         <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <% if user_signed_in? %>
+          <i class="fa-solid fa-plus"></i>
+        <% else %>
           Vendre
+        <% end %>
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="browseDropdown" data-dropdownnav-target="dropdownMenu">
           <li><%= link_to "Suggérer un nouveau produit", "#", class: "dropdown-item" %></li>
           <%= link_to "Faire une offre", select_product_path, class: "dropdown-item" %>
         </ul>
       </li>
+      <% if user_signed_in? %>
       <li class="nav-item">
-        <% if user_signed_in? %>
           <%= link_to liked_products_path, class: "nav-link" do %>
             <i class="far fa-regular fa-heart default-color"></i>
           <% end %>
-        <% end %>
       </li>
       <li class="nav-item">
         <%= link_to "#", class: "nav-link" do %>
       <i class="far fa-comment fa-fw default-color"></i>
         <% end %>
       </li>
+      <% end %>
     </ul>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,14 +77,18 @@
       </li>
 
         <% else %>
-          <li class="nav-item connection-nav">
-            <%= link_to "Se Connecter", new_user_session_path, class: "nav-link" %>
-          </li>
           <li class="nav-item">
-            <%= link_to "S'inscrire", new_user_registration_path, class: "nav-link inscription-nav" %>
+            <%= link_to "Se connecter | S'inscrire", new_user_registration_path, class: "nav-link inscription-nav" %>
           </li>
         <% end %>
       </ul>
     </div>
   </div>
 </div>
+<%# <div class="second-navbar"> %>
+  <%# <p>link_to "Louis Vuitton", "#", class: "dropdown-item"</p> %>
+  <%# <p>link_to "Nintendo", "#", class: "dropdown-item"</p> %>
+  <%# <p>link_to "Hermés", "#", class: "dropdown-item"</p> %>
+  <%# <p>link_to "Geek Space", "#", class: "dropdown-item"</p> %>
+  <%# <p>link_to "Maroquinerie", "#", class:"dropdown-item"</p> %>
+<%# </div> %>

@@ -7,5 +7,7 @@
   <p><strong>Langue:</strong> <%= @offer.language %></p>
   <p><strong>État:</strong> <%= @offer.etat %></p>
 
+<% if @offer.user == current_user %>
   <%= link_to 'Modifier l\'offre', edit_offer_path(@offer), class: 'button' %>
+<% end %>
 </div>

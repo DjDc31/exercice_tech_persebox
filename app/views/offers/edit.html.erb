@@ -11,34 +11,39 @@
   <% end %>
   </div>
   <div class="form-edit-prez">
-  <%= form_with(model: @offer, local: true, html: { class: "offer-form" }) do |form| %>
-    <div class="form-group">
-      <%= form.label :price, "Prix (€)" %>
-      <%= form.number_field :price, step: 0.5, class: "form-control" %>
-    </div>
+    <%= form_with(model: @offer, local: true, html: { class: "offer-form" }) do |form| %>
 
-    <div class="form-group">
-      <%= form.label :extra, "Extra" %>
-      <%= form.check_box :extra %>
-    </div>
+      <div class="flex-form-inputs">
+        <div class="form-group">
+          <%= form.label :price, "Prix (€)" %>
+          <%= form.number_field :price, step: 0.5, class: "form-control" %>
+        </div>
 
-    <div class="form-group">
-      <%= form.label :language, "Langue" %>
-      <%= form.select :language, Offer.language_options, {}, class: "form-control" %>
-    </div>
+        <div class="form-group">
+          <%= form.label :language, "Langue" %>
+          <%= form.select :language, Offer.language_options, {}, class: "form-control" %>
+        </div>
 
-    <div class="form-group">
-      <%= form.label :etat, "État" %>
-      <%= form.select :etat, Offer.formatted_etat_select_options, {}, class: "form-control" %>
-    </div>
+        <div class="form-group">
+          <%= form.label :etat, "État" %>
+          <%= form.select :etat, Offer.formatted_etat_select_options, {}, class: "form-control" %>
+        </div>
+      </div>
 
-    <div class="form-group">
-      <%= form.label :content, "Description" %>
-      <%= form.text_area :content, class: "form-control" %>
-    </div>
+      <div class="form-group">
+        <%= form.label :content, "Description" %>
+        <%= form.text_area :content, class: "form-control" %>
+      </div>
 
-    <%= form.submit 'Modifier l\'offre', class: "btn btn-primary" %>
-    <%= link_to 'Supprimer l\'offre', offer_path(@offer), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette offre?' }, class: "btn btn-danger" %>
-  <% end %>
-</div>
+      <div class="form-group extra">
+        <%= form.label :extra, "Extra" %>
+        <%= form.check_box :extra %>
+      </div>
+
+      <div class="flex-form-inputs">
+        <%= form.submit 'Modifier l\'offre', class: "btn btn-edit" %>
+        <%= link_to 'Supprimer l\'offre', offer_path(@offer), data: { turbo_method: :delete, turbo_confirm: 'Êtes-vous sûr de vouloir supprimer cette offre?' }, class: "btn btn-destroy" %>
+      </div>
+    <% end %>
+  </div>
 </div>
