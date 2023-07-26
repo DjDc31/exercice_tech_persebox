@@ -1,7 +1,7 @@
 .sub-footer-1 {
   background-color: #242424;
   color: white;
-  height: 200px;
+  height: 280px;
 }
 
 .sub-footer-2 {
@@ -54,7 +54,7 @@
 
 .foot-contain {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: center;
   width: 90%;
   margin-left: 100px;
@@ -62,4 +62,20 @@
 
 .titre-ffo{
   margin-left: 20px;
+}
+
+.brand-foot p {
+  font-size: 11px;
+  margin: 0;  /* cela supprime la marge autour du paragraphe */
+  padding: 0;
+  margin-bottom: 5px;
+}
+
+#separation-line {
+  // border: none;
+  border-top: 1px solid #ffffff;
+  width: 70%;  /* définir la largeur souhaitée ici */
+  margin: auto; /* centrage horizontal */
+  margin-top: 20px;
+  margin-bottom: 12px;
 }
