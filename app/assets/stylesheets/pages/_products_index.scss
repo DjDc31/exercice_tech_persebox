@@ -1,17 +1,13 @@
-// .products-container {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr 1fr 1fr;
-// }
-
-// .product-card {
-//   height: 250px;
-//   width: 200px;
-//   margin-top: 20px;
-//   margin-bottom: 20px;
-//   background-color: #8c1c13;
-//   color: white;
-//   .icon-like {
-//     display: flex;
-//     justify-content: end;
-//   }
-// }
+.products-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  width: 90%;
+  margin-left: 100px;
+}
+.header {
+  padding: 20px 25px;
+  text-shadow: 4px 3px 0px #fff, 9px 8px 0px rgba(89,243,137,0.3);
+  font-family: $headers-font;
+  font-size: 45px;
+}

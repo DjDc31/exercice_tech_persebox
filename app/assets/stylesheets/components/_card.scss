@@ -21,6 +21,8 @@
 
 .product-image .heart-icon {
   position: absolute;
+  background-color: transparent;
+  border: none;
   top: 228px;
   right: -4px;
   // color: rgb(0, 0, 0);
@@ -28,7 +30,6 @@
   font-family: Arial, Helvetica, sans-serif;
   line-height: normal;
 }
-
 
 .product-image .croix-icon {
   position: absolute;
@@ -84,9 +85,9 @@ font-size: small;
   color: #777;
 }
 
-.last-sale-price {
-  // font-weight: bold;
-}
+// .last-sale-price {
+//   font-weight: bold;
+// }
 
 .product-card p {
   margin-bottom: 0;

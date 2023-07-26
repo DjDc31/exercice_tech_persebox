@@ -1,9 +1,9 @@
 <div class="product-details">
-  <h2><%= @product.modele %></h2>
+  <h1 class="header"><%= @product.modele %></h1>
   <p>Marque: <%= @product.marque %></p>
-<% if @product.images.attached? %>
-  <%= image_tag @product.images.first, class: "product-showimage" %>
-<% end %>  <p>Description: <%= @product.content %></p>
+  <% if @product.images.attached? %>
+    <%= image_tag @product.images.first, class: "product-showimage" %>
+  <% end %>  <p>Description: <%= @product.content %></p>
   <!-- Autres informations sur le produit -->
 </div>
 

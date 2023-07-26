@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1><%= current_user.first_name %>, voici vos produits <i class="fa-solid fa-heart" style="color: #e32400;"></i></h1>
+      <h1 class="header"><%= current_user.first_name %>, voici vos produits <i class="fa-solid fa-heart" style="color: #e32400;"></i></h1>
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-12">
-      <h2 class="title-home"></h2>
+      <%# <h2 class="title-home"></h2> %>
       <div class="row">
         <% @liked_products.each do |product| %>
           <div class="col-lg-2 col-md-6 card-padding-bottom"> <!-- You can adjust the column classes here -->

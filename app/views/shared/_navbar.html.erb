@@ -4,9 +4,17 @@
       <%= image_tag "PERSEBOX.png", alt: "Logo" %>
     <% end %>
 
-    <form class="d-flex justify-content-start ms-2">
-      <input class="form-control me-2" type="search" placeholder="Rechercher par modéle, marque, etc." aria-label="Rechercher">
-    </form>
+      <div class="search-form-container">
+        <%= form_with url: products_path, method: 'get', class: "d-flex" do %>
+          <%= text_field_tag :query,
+              params[:query],
+              class: "input-search",
+              placeholder: "Chercher par marque, modèle..." %>
+          <%= button_tag( :class => "btn-search") do %>
+            <i class="fa-solid fa-magnifying-glass search-icon" style="color: #59F389;"></i>
+          <% end %>
+        <% end %>
+      </div>
 
     <ul class="navbar-nav ms-auto">
       <%# <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
@@ -32,7 +40,7 @@
       <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
         <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <% if user_signed_in? %>
-          <i class="fa-solid fa-plus"></i>
+          <i class="fa-solid fa-plus default-color icon-navbar"></i>
         <% else %>
           Vendre
         <% end %>
@@ -45,12 +53,12 @@
       <% if user_signed_in? %>
       <li class="nav-item">
           <%= link_to liked_products_path, class: "nav-link" do %>
-            <i class="far fa-regular fa-heart default-color"></i>
+            <i class="far fa-regular fa-heart default-color icon-navbar"></i>
           <% end %>
       </li>
       <li class="nav-item">
         <%= link_to "#", class: "nav-link" do %>
-      <i class="far fa-comment fa-fw default-color"></i>
+      <i class="far fa-comment fa-fw default-color icon-navbar"></i>
         <% end %>
       </li>
       <% end %>
@@ -65,7 +73,7 @@
         <% if user_signed_in? %>
         <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
         <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-regular fa-circle-user default-color"></i>
+          <i class="fa-regular fa-circle-user default-color icon-navbar"></i>
         </a>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" data-dropdownnav-target="dropdownMenu">
           <li><%= link_to "Mon compte", edit_user_registration_path, class: "dropdown-item"%></li>

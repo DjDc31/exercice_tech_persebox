@@ -1,5 +1,5 @@
 <div class="offer-detail">
-  <h1>Détails de l'offre</h1>
+  <h1 class="header">Détails de l'offre</h1>
   <p><strong>Marque:</strong> <%= @offer.product.marque %></p>
   <p><strong>Modèle:</strong> <%= @offer.product.modele %></p>
   <p><strong>Prix:</strong> <%= number_to_currency(@offer.price, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></p>
