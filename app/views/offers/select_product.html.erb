@@ -1,11 +1,15 @@
 <!-- select_product.html.erb -->
+<div class="contain-add">
+
 <h1 class="header">Sélectionnez un produit</h1>
 <h2>Trouvez le produit que vous recherchez pour continuer</h2>
 
-<%= form_for @offer, url: create_offer_path, method: :post do |f| %>
+<%= form_with url: set_product_path, method: :post do |f| %>
   <div class="form-group">
-    <%= f.label :product_id, "Produit" %>
-    <%= f.collection_select :product_id, @products, :id, :modele, {}, class: "form-control" %>
+    <%= label_tag :product_id, "Produit" %>
+    <%= select_tag :product_id, options_from_collection_for_select(@products, :id, :modele), class: "form-control" %>
   </div>
-  <%= f.submit "Continuer", class: "btn btn-primary" %>
+      <%= f.submit "Continuer", class: "btn btn-primary" %>
+
 <% end %>
+</div>

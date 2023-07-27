@@ -1,0 +1,58 @@
+.add-st {
+  background-color: rgb(233, 233, 233);
+  padding: 30px;
+}
+
+.product-img img{
+  max-width: 300px;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.card-img-similar {
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+}
+
+.card-img-left {
+  flex: 0 0 auto; /* Cela assure que l'image ne se rétrécit pas ni ne grandit */
+  width: 38%; /* Vous pouvez ajuster cela pour changer la largeur de l'image */
+}
+
+.card-body {
+  flex: 1; /* Cela assure que le contenu remplit l'espace restant après que l'image a pris sa largeur */
+}
+
+.card-title {
+  line-height: 1.2; /* ajustez cette valeur pour modifier l'espacement entre les lignes du titre */
+  margin-bottom: 0.5rem; /* ajustez cette valeur pour modifier l'espace sous le titre */
+}
+
+.card-text {
+  line-height: 10px; /* ajustez cette valeur pour modifier l'espacement entre les lignes du texte */
+  margin-bottom: 0.5rem; /* ajustez cette valeur pour modifier l'espace sous le texte */
+}
+
+.similar-offer-card {
+  width: 80%;
+  margin: auto;
+}
+
+.contain-add {
+  margin-right: 30px;
+  margin-left: 40px;
+}
+
+.contain-sim {
+  margin-top: 30px;
+}
+
+.form-group {
+  margin-bottom: 8px;
+}
+
+.seonc {
+  margin-top: -30px;
+  margin-bottom: 60px;
+}

@@ -1,33 +1,73 @@
-<div class="row">
-<div class="col-md-6">
-  <div class="product-image">
-    <%# <%= image_tag @product.images.first.url(resize_to_limit: [140, 75]), alt: @product.modele %> %>
+<div class="contain-add">
+  <div class="row">
+    <div class="col-6 text-center">
+      <h2><%= @product.marque %></h2>
+      <br>
+      <h4 class="seonc">"<%= @product.modele %>"</h4>
+      <div class="product-img">
+        <%= image_tag @product.images.first.url(resize_to_limit: [500, 350]), alt: @product.modele, class: "img-fluid" %>
+      </div>
+    </div>
+
+    <div class="col-6 add-st">
+      <%= form_for @offer do |f| %>
+                <div class="row"> <!-- Ajout de cette ligne -->
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= f.label :price, "Prix (€)" %>
+              <div class="col-md-8"> <!-- J'ai ajusté la largeur ici -->
+                <%= f.number_field :price, min: 0, max: 999, step: 0.5, value: 0, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <%= f.label :language, "Langue" %>
+              <%= f.select :language, options_for_select(Offer.language_options), {}, { class: "form-control" } %>
+            </div>
+          </div>
+        </div>
+                <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :etat, "État du produit" %>
+            <%= f.select :etat, Offer.formatted_etat_select_options, {}, { class: "form-control" } %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :extra, "Extra?" %>
+          <%= f.check_box :extra %>
+          <p><small><em>Présence du papier de soie, de l'emballage cadeau originelle, etc. <br>Rajoutez les détails en description.</em></small></p>
+        </div>
+        <div class="form-group">
+          <%= f.label :content, "Description" %>
+          <%= f.text_area :content, class: "form-control" %>
+        </div>
+        <%= f.submit "Ajouter l'offre", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row contain-sim">
+    <div class="col-12">
+      <h2>Offres similaires</h2>
+      <div class="d-flex flex-wrap">
+        <% @similar_offers.take(4).each do |offer| %>
+          <div class="col-lg-3 col-md-2 col-sm-2 col-12 p-2">
+            <div class="card similar-offer-card">
+              <div class="d-flex align-items-start">
+                <div class="card-img-left">
+                  <%= image_tag offer.product.images.first.url, alt: offer.product.modele, class: "card-img-similar" %>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><%= offer.product.modele %> <%= offer.product.marque %></h5>
+                  <p class="card-text"><%= offer.price %> €</p>
+                  <p class="card-text">Extra: <%= offer.extra ? '<i class="fa-solid fa-check" style="color: #00f900;"></i>'.html_safe : '<i class="fa-solid fa-xmark" style="color: #000000;"></i>'.html_safe %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
-
-  <div class="col-md-6">
-    <%= form_for @offer do |f| %>
-
-  <div class="form-group">
-    <%= f.label :price, "Prix" %>
-    <%= f.number_field :price, min: 0, max: 999, step: 0.5, value: 0, class: "form-control" %>
-    <%= f.label :price, "€" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :extra, "Option supplémentaire" %>
-    <%= f.check_box :extra %>
-  </div>
-  <div class="form-group">
-    <%= f.label :content, "Description" %>
-    <%= f.text_area :content, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :language, "Langue" %>
-    <%= f.select :language, options_for_select(Offer.language_options), {}, { class: "form-control" } %>
-  </div>
-<div class="form-group">
-  <%= f.label :etat, "État du produit" %>
-  <%= f.select :etat, Offer.formatted_etat_options, {}, { class: "form-control" } %>
-</div>
-  <%= f.submit "Ajouter l'offre", class: "btn btn-primary" %>
-<% end %>

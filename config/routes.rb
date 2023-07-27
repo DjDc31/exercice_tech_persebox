@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   get '/liked_products', to: 'products#liked', as: 'liked_products'
   get '/my_offers', to: 'offers#my_offers', as: 'my_offers'
 
+  get 'offers/new/:product_id', to: 'offers#new', as: 'new_offer'
+  post 'offers/set_product', to: 'offers#set_product', as: 'set_product'
 end

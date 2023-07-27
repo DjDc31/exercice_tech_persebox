@@ -7,8 +7,12 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
-    @product = Product.find(params[:id])
+    @product = Product.find(params[:product_id])
+    @similar_offers = Offer.joins(:product).where('products.marque = ? AND products.modele = ?', @product.marque, @product.modele)
+  end
 
+  def set_product
+    redirect_to new_offer_path(product_id: params[:product_id])
   end
 
   def create_offer
