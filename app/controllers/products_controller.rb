@@ -2,8 +2,7 @@ class ProductsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
-    @products = Product.all
-
+    @products = Product.includes(:offers)
     if params[:donations].present?
       @products = @products.joins(:offer).where(offers: { don: true })
     elsif params[:query].present?
@@ -12,13 +11,10 @@ class ProductsController < ApplicationController
         OR products.modele ILIKE :query
         OR products.content ILIKE :query
         OR products.couleur ILIKE :query
-        OR users.nickname ILIKE :query
       SQL
-      @products = @products.joins(:users).where(sql_subquery, query: "%#{params[:query]}%").distinct
+      @products = @products.where(sql_subquery, query: "%#{params[:query]}%").distinct
     end
-
-    # sort = params[:sort] || 'price_asc'
-    # @products = sort_products(@products, sort)
+    sort_products
   end
 
   def show
@@ -29,19 +25,18 @@ class ProductsController < ApplicationController
     @liked_products = current_user.likes.map(&:product)
   end
 
-
   private
 
-  def sort_products(products, sort)
-    case sort
-    when 'price_asc'
-      products.order(price: :asc)
-    when 'price_desc'
-      products.order(price: :desc)
-    when 'alphabetical'
-      products.order(marque: :asc)
-    else
-      products
+  def sort_products
+    if params[:sort].present?
+      case params[:sort]
+      when "price_asc"
+        @products = @products.order("offers.price ASC")
+      when "price_desc"
+        @products = @products.order("offers.price DESC")
+      when "alphabetical"
+        @products = @products.order(marque: :asc)
+      end
     end
   end
 end

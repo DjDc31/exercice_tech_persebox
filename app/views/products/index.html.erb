@@ -11,10 +11,9 @@
 
 <!-- Ajouter le sélecteur de tri ici -->
 <div class="sort-selector" style="float: right; margin-right: 65px;">
-  <%= form_with(url: products_path, method: "get", local: true) do |f| %>
-    <%= f.hidden_field :query, value: params[:query] %>
-    <%= f.select :sort, options_for_select([['Prix croissant', 'price_asc'], ['Prix décroissant', 'price_desc'], ['Ordre alphabétique', 'alphabetical']], selected: params[:sort]) %>
-    <%= f.submit "Trier" %>
+  <%= form_tag(products_path, method: "get") do %>
+    <%= select_tag :sort, options_for_select([['Prix croissant', 'price_asc'], ['Prix décroissant', 'price_desc'], ['Ordre alphabétique', 'alphabetical']]), class:"input-tri" %>
+    <%= submit_tag "trier", class:"submit-tri" %>
   <% end %>
 </div>
 

@@ -33,3 +33,19 @@
 .brand a:hover{
   color: $box !important;
 }
+.input-tri {
+  border-color: #ccc;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  padding: 5px;
+}
+.submit-tri {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  padding: 2px 6px;
+  background-color: white;
+  border: 2px solid $box;
+  border-radius: 10px;
+  &:hover {
+    background-color: $box;
+    color: white;
+  }
+}

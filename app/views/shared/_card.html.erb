@@ -8,12 +8,12 @@
 
     <div class="product-details">
       <div class="p-home">
-        <p class="product-model"><%= product.modele %></p>
+        <p class="product-model"><strong><%= product.modele %></strong></p>
       </div>
       <p class="product-brand"><%= product.marque %></p>
       <div class="product-offer">
         <% if product.offers.any? %>
-          <p class="lowest-price-label">Demande la plus basse</p>
+          <p class="lowest-price-label">Offre la plus basse</p>
           <p class="lowest-price"><%= product.offers.first.price %> €</p>
         <% end %>
       </div>
