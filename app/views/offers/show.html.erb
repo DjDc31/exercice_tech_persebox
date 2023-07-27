@@ -1,13 +1,28 @@
 <div class="offer-detail">
   <h1 class="header">Détails de l'offre</h1>
-  <p><strong>Marque:</strong> <%= @offer.product.marque %></p>
-  <p><strong>Modèle:</strong> <%= @offer.product.modele %></p>
-  <p><strong>Prix:</strong> <%= number_to_currency(@offer.price, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></p>
-  <p><strong>Extra:</strong> <%= @offer.extra ? 'Oui' : 'Non' %></p>
-  <p><strong>Langue:</strong> <%= @offer.language %></p>
-  <p><strong>État:</strong> <%= @offer.etat %></p>
+  <div class="row">
+    <!-- Image à gauche -->
+    <div class="col-md-6">
+      <% if @offer.product.images.attached? %>
+        <% @offer.product.images.each do |image| %>
+          <%= image_tag image, class: "img-fluid" %>
+        <% end %>
+      <% end %>
+    </div>
 
-<% if @offer.user == current_user %>
-  <%= link_to 'Modifier l\'offre', edit_offer_path(@offer), class: 'button' %>
-<% end %>
+    <!-- Détails à droite -->
+<div class="col-md-6 d-flex line-height flex-column">
+      <p><strong>Marque:</strong> <%= @offer.product.marque %></p>
+      <p><strong>Modèle:</strong> <%= @offer.product.modele %></p>
+      <p><strong>Prix:</strong> <%= number_to_currency(@offer.price, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></p>
+      <p><strong>Extra:</strong> <%= @offer.extra ? 'Oui' : 'Non' %></p>
+      <% language_option = Offer.language_options.find {|option| option[1] == @offer.language } %>
+      <p><strong>Langue:</strong> <%= language_option ? language_option[0] : @offer.language %></p><p><strong>État:</strong> <%= @offer.formatted_etat %></p>
+      <p><strong>Description:</strong> <%= @offer.content %></p>
+
+      <% if @offer.user == current_user %>
+        <%= link_to 'Modifier votre offre', edit_offer_path(@offer), class: 'button' %>
+      <% end %>
+    </div>
+  </div>
 </div>

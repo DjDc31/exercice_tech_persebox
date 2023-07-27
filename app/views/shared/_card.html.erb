@@ -1,6 +1,10 @@
 <div class="product-card" data-controller="like">
   <div class="product-image">
+        <a href="<%= product_path(product) %>" class="product-link">
+
     <%= image_tag product.images.first.url(resize_to_limit: [140, 75]), alt: product.modele %>
+    </a>
+
     <%= render 'shared/like_button', product: product %>
     <%= render 'shared/unlike_button', product: product %>
     </div>
