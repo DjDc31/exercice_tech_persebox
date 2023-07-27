@@ -4,17 +4,18 @@
 </head>
 
 <!-- select_product.html.erb -->
-<div class="contain-add container">
+<div class="contain-add-neww container">
 
   <h1 class="header text-center">Sélectionnez un produit</h1>
   <h2 class="text-center">Trouvez le produit que vous recherchez pour continuer</h2>
 
   <div class="row justify-content-center">
-    <div class="col-md-4">
+    <div class="col-md-6">
 
       <%= form_with url: set_product_path, method: :post do |f| %>
         <div class="form-group">
-          <%= text_field_tag :product_model, nil, class: "form-control white-background", id: "product-search" %>
+          <%= text_field_tag :product_model, nil, placeholder: "Recherchez un modéle en entrant les premières lettres.", class: "form-control white-background", id: "product-search" %>
+
         </div>
         <%= f.submit "Continuer", class: "btn btn-primary" %>
       <% end %>

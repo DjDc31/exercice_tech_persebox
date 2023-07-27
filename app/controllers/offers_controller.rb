@@ -16,14 +16,14 @@ class OffersController < ApplicationController
     redirect_to new_offer_path(product_id: @product.id)
   end
 
-
-  def create_offer
+  def create
     @offer = Offer.new(offer_params)
     @offer.user = current_user
 
     if @offer.save
-      redirect_to @offer.product, notice: "L'offre a été ajoutée avec succès!"
+      redirect_to my_offers_path, notice: "L'offre a été ajoutée avec succès!"
     else
+      @product = Product.find(params[:product_id])
       render :new
     end
   end
