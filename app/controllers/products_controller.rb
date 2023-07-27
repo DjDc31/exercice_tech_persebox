@@ -29,6 +29,7 @@ class ProductsController < ApplicationController
     @liked_products = current_user.likes.map(&:product)
   end
 
+
   private
 
   def sort_products(products, sort)

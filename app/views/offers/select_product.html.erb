@@ -1,15 +1,34 @@
+<head><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+</head>
+
 <!-- select_product.html.erb -->
-<div class="contain-add">
+<div class="contain-add container">
 
-<h1 class="header">Sélectionnez un produit</h1>
-<h2>Trouvez le produit que vous recherchez pour continuer</h2>
+  <h1 class="header text-center">Sélectionnez un produit</h1>
+  <h2 class="text-center">Trouvez le produit que vous recherchez pour continuer</h2>
 
-<%= form_with url: set_product_path, method: :post do |f| %>
-  <div class="form-group">
-    <%= label_tag :product_id, "Produit" %>
-    <%= select_tag :product_id, options_from_collection_for_select(@products, :id, :modele), class: "form-control" %>
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+
+      <%= form_with url: set_product_path, method: :post do |f| %>
+        <div class="form-group">
+          <%= text_field_tag :product_model, nil, class: "form-control white-background", id: "product-search" %>
+        </div>
+        <%= f.submit "Continuer", class: "btn btn-primary" %>
+      <% end %>
+
+    </div>
   </div>
-      <%= f.submit "Continuer", class: "btn btn-primary" %>
-
-<% end %>
 </div>
+
+<script>
+  $(function() {
+    var productNames = <%= raw @products.pluck(:modele).to_json %>;
+
+    $( "#product-search" ).autocomplete({
+      source: productNames
+    });
+  });
+</script>

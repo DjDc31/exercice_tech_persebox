@@ -12,8 +12,10 @@ class OffersController < ApplicationController
   end
 
   def set_product
-    redirect_to new_offer_path(product_id: params[:product_id])
+    @product = Product.find_by(modele: params[:product_model])
+    redirect_to new_offer_path(product_id: @product.id)
   end
+
 
   def create_offer
     @offer = Offer.new(offer_params)
