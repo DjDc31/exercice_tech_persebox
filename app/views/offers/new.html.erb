@@ -4,10 +4,14 @@
       <h2><%= @product.marque %></h2>
       <br>
       <h4 class="seonc">"<%= @product.modele %>"</h4>
+      <% if @lowest_offer %>
+        <p class="basse">Offre la plus basse: <%= @lowest_offer.price %> €</p>
+      <% end %>
       <div class="product-img">
         <%= image_tag @product.images.first.url(resize_to_limit: [500, 350]), alt: @product.modele, class: "img-fluid" %>
       </div>
     </div>
+
 
     <div class="col-6 add-st">
       <%= form_for @offer do |f| %>

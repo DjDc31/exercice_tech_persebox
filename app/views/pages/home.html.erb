@@ -107,25 +107,26 @@
   </div>
 </div>
 
-  <div class="row">
-    <div class="col-lg-6">
-      <div class="title-home-fav">
-        <div class="fav-tit">
-          <h2 class="title-home">Les favoris</h2>
-        </div>
-        <div class="pop-up-fav">
-          <span class="popup" data-popuptext="Produits les plus mis en favoris!"><i class="fa-solid fa-circle-exclamation hover-icon" style="color: #7a7a7a;"></i></span>
-        </div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="title-home-fav">
+      <div class="fav-tit">
+        <h2 class="title-home">Les favoris</h2>
       </div>
-      <ul class="product-cards-home">
-        <% @random_products.take(6).each do |product| %>
-          <li class="product-card-item-home">
-            <%= render partial: 'shared/card', locals: { product: product } %>
-          </li>
-        <% end %>
-      </ul>
+      <div class="pop-up-fav">
+        <span class="popup" data-popuptext="Produits les plus mis en favoris!"><i class="fa-solid fa-circle-exclamation hover-icon" style="color: #7a7a7a;"></i></span>
+      </div>
     </div>
+    <ul class="product-cards-home">
+      <% @most_liked_products.each do |product| %>
+        <li class="product-card-item-home">
+          <%= render partial: 'shared/card', locals: { product: product } %>
+        </li>
+      <% end %>
+    </ul>
   </div>
+</div>
+
 
   <div class="row">
     <div class="col-lg-6">

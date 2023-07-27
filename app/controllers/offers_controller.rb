@@ -9,6 +9,7 @@ class OffersController < ApplicationController
     @offer = Offer.new
     @product = Product.find(params[:product_id])
     @similar_offers = Offer.joins(:product).where('products.marque = ? AND products.modele = ?', @product.marque, @product.modele)
+    @lowest_offer = @product.offers.order(price: :asc).first
   end
 
   def set_product

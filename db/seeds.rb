@@ -83,7 +83,7 @@ product_ps1 = Product.create!(
 )
 
 # Attacher une image à ce produit
-product_ps1.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1689370302/ps1-boite.jpg_xapedz.jpg'), filename: 'ps1-boite.jpg', content_type: 'image/jpg')
+product_ps1.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1690461353/8ce1671db623cbfd3f73bca986d7b1f3_puhetm.jpg'), filename: 'ps1-boite.jpg', content_type: 'image/jpg')
 
 # Créer un nouveau produit
 product_switch = Product.create!(
@@ -116,16 +116,16 @@ product_ps5_digital.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z
 # Créer un nouveau produit
 product_pokemon_green = Product.create!(
   marque: 'Nintendo',
-  modele: 'Game Boy Pokémon Vert',
-  content: 'Boîte pour cartouche de Game Boy Pokémon Vert.',
+  modele: 'Game Boy Pokémon Rouge',
+  content: 'Boîte pour cartouche de Game Boy Pokémon Rouge.',
   # longueur: 35, # Mettez les dimensions que vous voulez
   # hauteur: 20,
   # largeur: 10,
-  couleur: 'Vert' # Mettez la couleur que vous voulez
+  couleur: 'Rouge' # Mettez la couleur que vous voulez
 )
 
 # Attacher une image au produit
-product_pokemon_green.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1689370780/gb-pokemon-green.jpg_jzest0.jpg'), filename: 'gb-pokemon-green.jpg_jzest0.jpg', content_type: 'image/jpg')
+product_pokemon_green.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1690461148/Pokemon-Red-Version-_USA_-Europe__g4yyzu.jpg'), filename: 'gb-pokemon-red.jpg_jzest0.jpg', content_type: 'image/jpg')
 
 # Créer un nouveau produit
 product_nintendo_64 = Product.create!(
@@ -139,7 +139,7 @@ product_nintendo_64 = Product.create!(
 )
 
 # Attacher une image au produit
-product_nintendo_64.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1689370780/nintendo64.jpg_wnsq7t.jpg'), filename: 'nintendo64.jpg_wnsq7t.jpg', content_type: 'image/jpg')
+product_nintendo_64.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1690460221/Console-Nintendo-64-N64-PAL-avec-boite-dorigine-removebg-preview_jpohxr.png'), filename: 'nintendo64.jpg_wnsq7t.jpg', content_type: 'image/jpg')
 
 # Créer un nouveau produit
 product_pokemon_blue = Product.create!(
@@ -153,7 +153,20 @@ product_pokemon_blue = Product.create!(
 )
 
 # Attacher une image au produit
-product_pokemon_blue.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1689370780/gb-pokemon-blue.jpg_jlpcvm.jpg'), filename: 'gb-pokemon-blue.jpg_jlpcvm.jpg', content_type: 'image/jpg')
+product_pokemon_blue.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1690461148/Pokemon-Blue-Version-_USA_-Europe__qxhmbk.jpg'), filename: 'gb-pokemon-blue.jpg_jlpcvm.jpg', content_type: 'image/jpg')
+
+product_nike_shoes = Product.create!(
+  marque: 'Nike',
+  modele: 'Classic Red/black',
+  content: 'Boîte pour Chaussure Nike.',
+  # longueur: 35, # Mettez les dimensions que vous voulez
+  # hauteur: 20,
+  # largeur: 10,
+  couleur: 'Noir' # Mettez la couleur que vous voulez
+)
+
+# Attacher une image au produit
+product_nike_shoes.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1690460222/noname_15.png_iefh3g.jpg'), filename: 'nike_shoes.jpg', content_type: 'image/jpg')
 
 # Créer un nouveau produit
 product_ps4 = Product.create!(
@@ -302,7 +315,7 @@ product_iphone_11 = Product.create!(
 )
 
 # Attacher une image au produit
-product_iphone_11.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1689365503/apple_iphone11_black_ucyc7b.jpg'), filename: 'apple_iphone11_black_ucyc7b.jpg', content_type: 'image/jpg')
+product_iphone_11.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1690460222/istockphoto-887890654-170667a_ieaufs.jpg'), filename: 'apple_iphone11_black_ucyc7b.jpg', content_type: 'image/jpg')
 
 # Créer un nouveau produit
 product_air_jordan = Product.create!(
@@ -316,7 +329,7 @@ product_air_jordan = Product.create!(
 )
 
 # Attacher une image au produit
-product_air_jordan.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1689365503/air-jordan-box-2015_xsbp1x.jpg'), filename: 'air-jordan-box-2015_xsbp1x.jpg', content_type: 'image/jpg')
+product_air_jordan.images.attach(io: URI.open('https://res.cloudinary.com/dxe8z0dsb/image/upload/v1690460222/mini-boite-sneakers-jordan_erfpqg.jpg'),filename: 'nike_jordan.jpg', content_type: 'image/jpg')
 
 
 puts "Creating Offers..."

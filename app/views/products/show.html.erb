@@ -1,25 +1,57 @@
-<div class="product-details">
-  <h1 class="header"><%= @product.modele %></h1>
-  <p>Marque: <%= @product.marque %></p>
+<div class="contain-add">
+  <div class="product-details">
+    <h6 class="sstitre"><%= @product.marque %></h6>
+    <h1 class="header shown"><%= @product.modele %></h1>
+<div class="d-flex justify-content-center align-items-center">
+<div class="product-image-shw">
   <% if @product.images.attached? %>
-    <%= image_tag @product.images.first, class: "product-showimage" %>
-  <% end %>  <p>Description: <%= @product.content %></p>
-  <!-- Autres informations sur le produit -->
+    <% @product.images.each do |image| %>
+      <%= image_tag image, class: "product-showimage" %>
+    <% end %>
+  <% end %>
 </div>
 
-<div class="offer-container">
-  <% @product.offers.each do |offer| %>
-    <div class="offer-item">
-      <%= link_to offer_path(offer) do %>
-        <div class="offer-info">
-          <p><%= offer.user.nickname %></p>
-          <p><%= offer.language %></p>
-          <p><%= offer.etat %></p>
-          <p><%= offer.extra %></p>
-          <p><%= offer.price %></p>
-          <p><i class="fa-solid fa-basket-shopping" style="color: #000000;"></i></p>
-        </div>
-      <% end %>
+<div class="mouvon">
+      <div class="product-info ml-3">
+        <p>Description: <br><%= @product.content %></p>
+        <!-- Ajout des informations supplémentaires si elles ne sont pas nulles -->
+        <% if @product.longueur  %>
+          <p>Dimension(cm): <%= @product.longueur %> x <%= @product.largeur %> x <%= @product.hauteur %></p>
+        <% end %>
+        <% if @product.couleur %>
+          <p>Couleur: "<%= @product.couleur %>"</p>
+        <% end %>
+      </div>
     </div>
+  </div>
+</div>
+</div>
+
+<table class="offers-table marge-table">
+  <tr>
+    <th>Vendeur</th>
+    <th>Langue</th>
+    <th>État</th>
+    <th><div class="pop-up-fav">
+        Extra
+        <span class="popupoff" data-popuptext="Accessoire(s) suppl. ex: ruban cadeau d'origine, papier de soie,..."><i class="fa-solid fa-circle-exclamation hover-icon" style="color: #7a7a7a;"></i></span>
+      </div></th>
+    <th>Prix</th>
+    <th></th> <!-- colonne pour le lien vers l'offre -->
+  </tr>
+  <% @product.offers.each do |offer| %>
+    <tr>
+      <td><%= offer.user.nickname %></td>
+      <td>        <% language_option = Offer.language_options.find {|option| option[1] == offer.language } %>
+        <%= language_option ? language_option[0] : offer.language %></td>
+      <td><%= Offer.formatted_etat_options[offer.etat] %></td>
+      <td><%= offer.extra ? '<i class="fa-solid fa-check" style="color: #00f900;"></i>'.html_safe : '<i class="fa-solid fa-xmark" style="color: #000000;"></i>'.html_safe %></td>
+      <td><%= number_to_currency(offer.price, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></td>
+      <td>
+        <%= link_to '<i class="fa-solid fa-magnifying-glass" style="color: #000000; margin-right: 9px"></i>'.html_safe, offer_path(offer) %>
+        <%= link_to '<i class="fa-solid fa-basket-shopping iconoff" style="color: #000000;"></i>'.html_safe, offer_path(offer) %>
+      </td>
+    </tr>
   <% end %>
+</table>
 </div>
