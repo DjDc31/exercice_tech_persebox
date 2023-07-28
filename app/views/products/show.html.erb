@@ -75,7 +75,12 @@
       <td><%= number_to_currency(offer.price, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></td>
       <td>
         <%= link_to '<i class="fa-solid fa-magnifying-glass icon-table" style="color: #000000; margin-right: 9px"></i>'.html_safe, offer_path(offer) %>
+      <% if offer.user != current_user %>
         <%= link_to '<i class="fa-solid fa-basket-shopping iconoff icon-table" style="color: #000000;"></i>'.html_safe, offer_path(offer) %>
+        <%= button_to offer_chatrooms_path(offer), method: :post, class: "your-button-class-if-any", form_class: 'your-form-class-if-any' do %>
+          <%= '<i class="fa-regular fa-comment-dots" style="color: #000000;"></i>'.html_safe %>
+        <% end %>
+      <% end %>
       </td>
     </tr>
   <% end %>

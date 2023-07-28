@@ -1,0 +1,7 @@
+<div id="message-<%= message.id %>">
+  <small>
+    <strong><%= message.user.nickname %></strong>
+    <i><%= pretty_date(message.created_at) %></i>
+  </small>
+  <p><%= message.content %></p>
+</div>

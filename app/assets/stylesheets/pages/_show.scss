@@ -120,3 +120,21 @@
   font-family: $headers-font;
   font-size: 22px;
 }
+
+.your-button-class-if-any {
+  /* style du bouton ici, pour le rendre similaire au lien */
+  background: none;
+  border: none;
+  color: #000000;
+  text-decoration: none;
+}
+
+.your-button-class-if-any:hover {
+  /* style de survol ici */
+  color: $box;
+}
+
+.your-form-class-if-any {
+  /* style pour le formulaire généré par button_to */
+  display: inline-block; /* pour le rendre inline comme le lien */
+}

@@ -13,6 +13,7 @@ gem 'table_print'
 gem 'faker'
 
 gem 'jquery-rails'
+gem 'money-rails', '~>1.14'
 
 
 

@@ -1,0 +1,43 @@
+<div class="container-tchat chatroom"
+  data-controller="chatroom-subscription"
+  data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+>
+<h1 class="nopa">
+  <div class="d-flex align-items-center">
+    <% if @chatroom.offer.product.images.attached? %>
+      <%= image_tag @chatroom.offer.product.images.first, class: 'your-class-name mr-3' %>
+    <% end %>
+    <div class="spaced-div">
+      <p class="mb-0">
+        <span class="brand-color"><%= @chatroom.offer.product.marque %></span>
+        <%= @chatroom.offer.product.modele %>
+      </p>
+    </div>
+    <div>
+      <div class="spaced-div-price">
+        <p class="mb-0"><%= number_to_currency(@chatroom.offer.price, unit: "€", separator: ",", delimiter: " ", format: "%n%u") %></p>
+      </div>
+    </div>
+  </div>
+</h1>
+
+<div class="messages" data-chatroom-subscription-target="messages">
+  <% @chatroom.messages.each do |message| %>
+    <%= render "messages/message", message: message %>
+  <% end %>
+</div>
+</div>
+
+<%= simple_form_for [@chatroom, @message],
+  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex", style: "width: 70%;" } do |f|
+%>
+  <%= f.input :content,
+    label: false,
+    placeholder: "Écrivez votre message ici...",
+    input_html: { class: 'small-input' },
+    wrapper_html: {class: "flex-grow-1"}
+  %>
+  <%= button_tag(type: 'submit', class: "btn planebtn mb-3") do %>
+    <i class="fas fa-paper-plane" style="color: #000000;"></i>
+  <% end %>
+<% end %>

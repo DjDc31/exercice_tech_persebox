@@ -21,4 +21,20 @@ Rails.application.routes.draw do
 
   get 'offers/new/:product_id', to: 'offers#new', as: 'new_offer'
   post 'offers/set_product', to: 'offers#set_product', as: 'set_product'
+
+
+  resources :offers do
+    resources :chatrooms, only: [:show, :create]
+  end
+
+  resources :chatrooms, only: [:show, :create, :index] do
+    resources :messages, only: :create
+  end
+
+
+  resources :offers do
+    resources :chatrooms, only: [:create]
+  end
+
+
 end
