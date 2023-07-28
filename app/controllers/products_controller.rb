@@ -50,7 +50,7 @@ class ProductsController < ApplicationController
       when "price_desc"
         sorted_offers = sorted_offers.order(price: :desc)
       when "alphabetical"
-        sorted_offers = sorted_offers.order(etat: :asc)
+        sorted_offers = sorted_offers.order(etat: :desc)
       end
     end
     sorted_offers

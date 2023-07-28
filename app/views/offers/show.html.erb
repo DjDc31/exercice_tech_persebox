@@ -19,6 +19,8 @@
       <% language_option = Offer.language_options.find {|option| option[1] == @offer.language } %>
       <p><strong>Langue:</strong> <%= language_option ? language_option[0] : @offer.language %></p><p><strong>État:</strong> <%= @offer.formatted_etat %></p>
       <p><strong>Description:</strong> <%= @offer.content %></p>
+      <br>
+      <p><strong>Vendeur:</strong> <%= @offer.user.nickname %></p>
 
       <% if @offer.user == current_user %>
         <%= link_to 'Modifier votre offre', edit_offer_path(@offer), class: 'button' %>

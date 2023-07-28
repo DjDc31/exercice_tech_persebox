@@ -1,38 +1,56 @@
 <div class="contain-add">
   <div class="product-details">
-    <h6 class="sstitre"><%= @product.marque %></h6>
     <h1 class="header shown"><%= @product.modele %></h1>
-<div class="d-flex justify-content-center align-items-center">
-<div class="product-image-shw">
-  <% if @product.images.attached? %>
-    <% @product.images.each do |image| %>
-      <%= image_tag image, class: "product-showimage" %>
-    <% end %>
-  <% end %>
-</div>
+    <h4 class="sstitre"><%= @product.marque %></h4>
+    <div class="d-flex justify-content-center align-items-center">
 
-<div class="mouvon">
-      <div class="product-info ml-3">
-        <p>Description: <br><%= @product.content %></p>
-        <!-- Ajout des informations supplémentaires si elles ne sont pas nulles -->
-        <% if @product.longueur  %>
-          <p>Dimension(cm): <%= @product.longueur %> x <%= @product.largeur %> x <%= @product.hauteur %></p>
-        <% end %>
-        <% if @product.couleur %>
-          <p>Couleur: "<%= @product.couleur %>"</p>
-        <% end %>
+      <div class="mouvon">
+        <div class="product-image-shw">
+          <% if @product.images.attached? %>
+            <% @product.images.each do |image| %>
+              <%= image_tag image, class: "product-showimage" %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="product-info ml-3">
+          <h4><%= @product.content %></h4> <br>
+          <br>
+          <!-- Ajout des informations supplémentaires si elles ne sont pas nulles -->
+          <% if @product.longueur  %>
+            <div class="second-info">
+              <h5>Dimensions (cm)</h5>
+              <p><%= @product.longueur %> x <%= @product.largeur %> x <%= @product.hauteur %></p>
+            </div>
+          <% end %>
+          <% if @product.couleur %>
+            <div class="second-info">
+              <h5>Couleur</h5>
+              <p><%= @product.couleur %></p>
+            </div>
+          <% end %>
+          <br>
+          <br>
+          <div class="second-info">
+            <h5>Offre la plus basse</h5>
+            <p><%= @product.offers.first.price %> €</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
 
 <!-- Ajouter le sélecteur de tri ici -->
-<div class="sort-selector" style="float: right; margin-right: 65px; margin-top: 6%;">
-  <%= form_tag(product_path(@product), method: "get") do %>
-    <%= select_tag :sort, options_for_select([['Prix croissant', 'price_asc'], ['Prix décroissant', 'price_desc'], ['Ordre par état', 'alphabetical']]), class:"input-tri" %>
-    <%= submit_tag "Trier", class:"submit-tri" %>
-  <% end %>
+<div class="under-product">
+  <div class="number-offers">
+    <p><%= @product.offers.count %> offres</p>
+  </div>
+  <div class="sort-selector" style="float: right; margin-right: 65px; margin-top: 3%;">
+    <%= form_tag(product_path(@product), method: "get") do %>
+      <%= select_tag :sort, options_for_select([['Prix croissant', 'price_asc'], ['Prix décroissant', 'price_desc'], ['Ordre par état', 'alphabetical']]), class:"input-tri" %>
+      <%= submit_tag "Trier", class:"submit-tri" %>
+    <% end %>
+  </div>
 </div>
 
 <table class="offers-table marge-table">
@@ -42,7 +60,7 @@
     <th>État</th>
     <th><div class="pop-up-fav">
         Extra
-        <span class="popupoff" data-popuptext="Accessoire(s) suppl. ex: ruban cadeau d'origine, papier de soie,..."><i class="fa-solid fa-circle-exclamation hover-icon" style="color: #7a7a7a;"></i></span>
+        <span class="popupoff" data-popuptext="Accessoire(s) suppl. ex: ruban cadeau d'origine, papier de soie, ..."><i class="fa-solid fa-circle-exclamation hover-icon" style="color: #7a7a7a;"></i></span>
       </div></th>
     <th>Prix</th>
     <th></th> <!-- colonne pour le lien vers l'offre -->
@@ -56,8 +74,8 @@
       <td><%= offer.extra ? '<i class="fa-solid fa-check" style="color: #00f900;"></i>'.html_safe : '<i class="fa-solid fa-xmark" style="color: #000000;"></i>'.html_safe %></td>
       <td><%= number_to_currency(offer.price, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></td>
       <td>
-        <%= link_to '<i class="fa-solid fa-magnifying-glass" style="color: #000000; margin-right: 9px"></i>'.html_safe, offer_path(offer) %>
-        <%= link_to '<i class="fa-solid fa-basket-shopping iconoff" style="color: #000000;"></i>'.html_safe, offer_path(offer) %>
+        <%= link_to '<i class="fa-solid fa-magnifying-glass icon-table" style="color: #000000; margin-right: 9px"></i>'.html_safe, offer_path(offer) %>
+        <%= link_to '<i class="fa-solid fa-basket-shopping iconoff icon-table" style="color: #000000;"></i>'.html_safe, offer_path(offer) %>
       </td>
     </tr>
   <% end %>

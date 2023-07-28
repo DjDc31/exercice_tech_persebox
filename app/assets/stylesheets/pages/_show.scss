@@ -23,8 +23,9 @@
 }
 
 .product-showimage {
-  max-width: 200px;
-  max-height: 200px;
+  margin-left: 20px;
+  max-width: 400px;
+  max-height: 400px;
 }
 
 .sstitre {
@@ -43,7 +44,7 @@
 }
 
 .marge-table {
-  margin-top: 9%;
+  margin-top: 1%;
 }
 
 .product-info {
@@ -51,20 +52,33 @@
   // border-radius: 10px;
   // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 55px;
-  margin-top: 20px;
   background-color: #fff;
   font-size: 18px;
 }
-
 .product-info p {
   margin-bottom: 10px;
   line-height: 1.6;
 }
-
+.product-info > h4 {
+  font-family: $headers-font;
+  margin-bottom: none;
+  text-align: center;
+}
+.product-info h5 {
+  text-transform: uppercase;
+  font-family: $body-font;
+  opacity: 0.6;
+  font-size: 16px;
+  padding-top: 4px;
+}
 .product-info p:last-child {
   margin-bottom: 0;
 }
-
+.second-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+}
 @keyframes float {
   0% {
     box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
@@ -81,12 +95,28 @@
 }
 
 .mouvon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
   border: 5px white solid;
   border-radius: 5%;
   overflow: hidden;
-  box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+  box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
   transform: translatey(0px);
   animation: float 6s ease-in-out infinite;
   img { width: 100%; height: auto; }
+}
+.icon-table:hover {
+  color: $box !important;
+}
+.under-product {
+  display: flex;
+  justify-content: space-between;
+}
+.number-offers {
+  padding-top: 70px;
+  padding-left: 150px;
+  font-family: $headers-font;
+  font-size: 22px;
 }
