@@ -51,6 +51,7 @@
 
 .small-input {
   height: 30px; /* Modifiez cette valeur selon vos besoins */
+  background-color: white;
 }
 
 .spaced-div {
@@ -63,4 +64,65 @@
 
 .brand-color {
   color: $box; /* Assurez-vous que la variable $box est définie dans votre fichier CSS */
+}
+
+.scrollable-div {
+  max-height: 500px; /* Modifier cette valeur selon vos besoins */
+  overflow-y: auto;
+}
+
+// To style the message itself
+.message-item {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.sender {
+  background-color: rgba(0, 255, 77, 0.19); /* Changer selon vos préférences */
+  text-align: right;
+  margin-left: 50%;
+}
+
+.receiver {
+  background-color: rgba(217, 217, 217, 0.23); /* Changer selon vos préférences */
+  text-align: left;
+  margin-right: 50%;
+}
+
+.message-content {
+  word-wrap: break-word;
+  overflow-wrap: break-word; /* Prise en charge pour les navigateurs modernes */
+}
+
+.your-image-class {
+  max-width: 50%;  /* adjust as needed */
+  height: auto;     /* maintain aspect ratio */
+}
+
+.hidden-file-input {
+  display: none;
+}
+.hidden {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.flex-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.no-conv {
+  margin-left: 35%;
+  margin-bottom: 20%;
+  margin-top: 10%;
+  top: 50%;
+  left: 50%;
 }

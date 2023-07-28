@@ -1,7 +1,9 @@
 <div class="container-tchat chatroom"
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
+  style="margin-right: 25%;"
 >
+
 <h1 class="nopa">
   <div class="d-flex align-items-center">
     <% if @chatroom.offer.product.images.attached? %>
@@ -21,23 +23,37 @@
   </div>
 </h1>
 
-<div class="messages" data-chatroom-subscription-target="messages">
+<div class="messages scrollable-div" data-chatroom-subscription-target="messages">
   <% @chatroom.messages.each do |message| %>
     <%= render "messages/message", message: message %>
   <% end %>
 </div>
-</div>
 
+</div>
 <%= simple_form_for [@chatroom, @message],
-  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex", style: "width: 70%;" } do |f|
+  html: { id: 'my_form', data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, style: "width: 70%; margin-left: 9%;" }, remote: true do |f|
 %>
-  <%= f.input :content,
-    label: false,
-    placeholder: "Écrivez votre message ici...",
-    input_html: { class: 'small-input' },
-    wrapper_html: {class: "flex-grow-1"}
-  %>
-  <%= button_tag(type: 'submit', class: "btn planebtn mb-3") do %>
-    <i class="fas fa-paper-plane" style="color: #000000;"></i>
-  <% end %>
+  <div class="form-group flex-group">
+    <%= f.input :content,
+      label: false,
+      placeholder: "Écrivez votre message ici...",
+      input_html: { class: 'small-input' },
+      wrapper_html: {class: "flex-grow-1"}
+    %>
+
+    <%= button_tag(type: 'submit', class: "btn planebtn mb-3") do %>
+      <i class="fas fa-paper-plane" style="color: #000000;"></i>
+    <% end %>
+  </div>
+
+  <div class="form-group" style="width: 55%;">
+    <%= f.input :image, as: :file, label: false, input_html: { id: 'image_input'} %>
+  </div>
 <% end %>
+
+
+<script>
+  document.getElementById('my_form').addEventListener('turbo:submit-end', function() {
+    this.reset();
+  });
+</script>

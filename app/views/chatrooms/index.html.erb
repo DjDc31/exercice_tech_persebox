@@ -1,6 +1,9 @@
     <h1 class="header shown">Votre Messagerie</h1>
 
 <div class="chatrooms-container">
+        <% if @chatrooms.empty? %>
+      <p class="no-conv">Vous n'avez pour le moment aucune conversation.</p>
+    <% else %>
   <div class="chatrooms-list d-flex flex-column">
     <% @chatrooms.each do |chatroom| %>
       <div class="entercard">
@@ -37,6 +40,8 @@
           <%# <% end %>
         </div>
       </div>
+          <% end %>
+
     <% end %>
   </div>
 

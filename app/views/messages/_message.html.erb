@@ -1,7 +1,12 @@
-<div id="message-<%= message.id %>">
+<div id="message-<%= message.id %>"
+     data-message-id="<%= message.id %>"
+     class="message-item <%= message.user == current_user ? 'sender' : 'receiver' %>">
   <small>
     <strong><%= message.user.nickname %></strong>
     <i><%= pretty_date(message.created_at) %></i>
   </small>
-  <p><%= message.content %></p>
+  <p class="message-content"><%= message.content %></p>
+  <% if message.image.attached? %>
+<%= image_tag message.image, class: 'your-image-class' %>
+  <% end %>
 </div>

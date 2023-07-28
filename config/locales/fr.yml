@@ -1,0 +1,19 @@
+fr:
+  date:
+    order:
+      - :day
+      - :month
+      - :year
+    month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
+  activerecord:
+    models:
+      message: "Message"
+    attributes:
+      message:
+        content: "Le formulaire"
+    errors:
+      models:
+        message:
+          attributes:
+            content:
+              blank: "ne peut pas être vide"

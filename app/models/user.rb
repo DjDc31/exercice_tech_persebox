@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :offers, dependent: :destroy
   has_many :chatrooms
   has_many :received_chatrooms, class_name: 'Chatroom', foreign_key: 'receiver_id'
+  has_many :read_messages
+  has_many :messages_read, through: :read_messages, source: :message
 
 
   before_validation :set_default_type
