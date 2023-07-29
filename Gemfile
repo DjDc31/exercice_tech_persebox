@@ -14,7 +14,7 @@ gem 'faker'
 
 gem 'jquery-rails'
 gem 'money-rails', '~>1.14'
-
+gem "rails_admin", "3.0"
 
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -88,3 +88,4 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+gem "sassc-rails"

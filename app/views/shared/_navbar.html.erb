@@ -84,6 +84,9 @@
             <li><%= link_to "Mes achats", "#", class: "dropdown-item"%></li>
             <li><%= link_to "Mes ventes", my_offers_path, class: "dropdown-item"%></li>
             <li><hr class="dropdown-divider"></li>
+                      <% if current_user.admin? %> <!-- Vérifie si l'utilisateur courant est un administrateur -->
+            <li><%= link_to "Admin", "/admin", class: "dropdown-item" %></li>
+          <% end %>
             <li><%= link_to "Déconnexion", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %></li>
           </ul>
         </li>

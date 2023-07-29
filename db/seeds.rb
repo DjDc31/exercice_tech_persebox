@@ -9,8 +9,16 @@
 # db/seeds.rb
 
 # Supprimer tous les utilisateurs existants
-User.destroy_all
+
+# ReadMessage.destroy_all
+Message.destroy_all
+Like.destroy_all
+Chatroom.destroy_all
 Product.destroy_all
+Offer.destroy_all
+User.destroy_all
+
+
 # Réinitialiser la mémoire de Faker
 Faker::UniqueGenerator.clear
 
@@ -23,7 +31,7 @@ User.create!(
   first_name: 'Cyrille',
   last_name: 'Varin',
   address: 'place verdun, 64000, Pau',
-  type: 'Admin',
+  admin: true,
   date_birth: Date.new(1989, 9, 26),
   description: 'This is a description for user1'
 )
@@ -35,7 +43,7 @@ User.create!(
   first_name: 'Laurène',
   last_name: 'Freyer',
   address: 'Rennes',
-  type: Admin,
+  admin: true,
   date_birth: Date.new(1992, 1, 1),
   description: 'This is a description for user2'
 )
@@ -52,7 +60,6 @@ puts "Creating Users..."
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     address: Faker::Address.street_address,
-    type: User,
     date_birth: Faker::Date.birthday(min_age: 18, max_age: 65),
     description: Faker::Lorem.sentence
   )
