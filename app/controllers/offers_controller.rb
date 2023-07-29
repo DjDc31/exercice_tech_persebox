@@ -1,5 +1,7 @@
 class OffersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
+  before_action :set_offer, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, only: [:edit, :update, :destroy]
 
   def show
     @offer = Offer.find(params[:id])
@@ -68,5 +70,15 @@ class OffersController < ApplicationController
 
   def offer_params
     params.require(:offer).permit(:product_id, :price, :extra, :content, :language, :etat)
+  end
+
+  def set_offer
+    @offer = Offer.find(params[:id])
+  end
+
+  def check_user
+    if current_user != @offer.user
+      redirect_to offers_path, alert: "Vous n'êtes pas autorisé à modifier cette offre."
+    end
   end
 end

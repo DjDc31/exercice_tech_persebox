@@ -1,0 +1,64 @@
+<div class="user-profile">
+  <% if @user.avatar.attached? %>
+    <div class="avatar-container">
+      <%= image_tag @user.avatar, class: "user-avatar" %>
+    </div>
+  <% else %>
+    <div class="avatar-container">
+      <%= image_tag("avatar-default.jpg", class: "user-avatar") %>
+    </div>
+  <% end %>
+  <h1><%= @user.nickname %></h1>
+  <p><%= @offers.count %> offre(s)</p>
+  <% if current_user == @user %>
+  <p><%= link_to "Editer mon profil", edit_user_registration_path, class: "dropdown-item"%></p>
+  <% end %>
+</div>
+
+
+
+<table class="offers-table">
+  <tr>
+    <th></th> <!-- colonne pour l'image du prdt -->
+    <th>Marque</th>
+    <th>Produit</th>
+    <th>Prix</th>
+    <th><div class="pop-up-fav">
+        Extra
+        <span class="popupoff" data-popuptext="Accessoire(s) suppl. ex: ruban cadeau d'origine, papier de soie,..."><i class="fa-solid fa-circle-exclamation hover-icon" style="color: #7a7a7a;"></i></span>
+      </div>
+    </th>
+    <th>Langue</th>
+    <th>État</th>
+    <th></th> <!-- colonne pour le bouton de suppression -->
+  </tr>
+  <% @offers.each do |offer| %>
+    <tr>
+      <td class="product-image">
+        <% if offer.product.images.first %>
+          <%= image_tag url_for(offer.product.images.first), alt: offer.product.modele %>
+        <% end %>
+      </td>
+      <td><%= offer.product.marque %></td>
+      <td><%= link_to offer.product.modele, product_path(offer.product) %></td>
+      <td><%= number_to_currency(offer.price, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></td>
+      <td><%= offer.extra ? '<i class="fa-solid fa-check" style="color: #00f900;"></i>'.html_safe : '<i class="fa-solid fa-xmark" style="color: #000000;"></i>'.html_safe %></td>
+      <td>
+        <% language_option = Offer.language_options.find {|option| option[1] == offer.language } %>
+        <%= language_option ? language_option[0] : offer.language %>
+      </td>
+      <td><%= Offer.formatted_etat_options[offer.etat] %></td>
+    <td>
+      <% if current_user == @user %>
+        <%= link_to '<i class="fa-solid fa-pencil iconoff" style="color: #000000;"></i>'.html_safe, edit_offer_path(offer)%>
+        <%= link_to '<i class="fa-solid fa-circle-xmark iconoff" style="color: #e32400;"></i>'.html_safe, offer_path(offer), data: { turbo_method: :delete, turbo_confirm: "Êtes-vous sûr ?" } %>
+      <% else %>
+        <%= link_to '<i class="fa-solid fa-basket-shopping iconoff icon-table" style="color: #000000;"></i>'.html_safe, offer_path(offer) %>
+                <%= button_to offer_chatrooms_path(offer), method: :post, class: "your-button-class-if-any", form_class: 'your-form-class-if-any' do %>
+          <%= '<i class="fa-regular fa-comment-dots" style="color: #000000;"></i>'.html_safe %>
+        <% end %>
+      <% end %>
+    </td>
+    </tr>
+  <% end %>
+</table>

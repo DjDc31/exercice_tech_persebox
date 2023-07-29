@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
   root to: "pages#home"
 
   resources :offers, only: [:show, :create, :destroy, :edit, :update]
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get 'offers/new/:product_id', to: 'offers#new', as: 'new_offer'
   post 'offers/set_product', to: 'offers#set_product', as: 'set_product'
 
+  resources :users, only: [:show]
 
   resources :offers do
     resources :chatrooms, only: [:show, :create]
@@ -36,6 +37,5 @@ Rails.application.routes.draw do
   resources :offers do
     resources :chatrooms, only: [:create]
   end
-
 
 end

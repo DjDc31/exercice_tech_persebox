@@ -1,0 +1,5 @@
+<% if binding[:object].images.attached? %>
+  <%= image_tag url_for(bindings[:object].images) %>
+<% end %>
+
+<%= form.file_field :images, multiple: true, direct_upload: true %>

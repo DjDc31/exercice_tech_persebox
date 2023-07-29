@@ -67,7 +67,7 @@
   </tr>
 <% @sorted_offers.each do |offer| %>
     <tr>
-      <td><%= offer.user.nickname %></td>
+      <td><%= link_to offer.user.nickname, user_path(offer.user) %></td>
       <td>        <% language_option = Offer.language_options.find {|option| option[1] == offer.language } %>
         <%= language_option ? language_option[0] : offer.language %></td>
       <td><%= Offer.formatted_etat_options[offer.etat] %></td>

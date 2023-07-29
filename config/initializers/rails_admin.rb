@@ -16,6 +16,33 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'Product' do
+    edit do
+      exclude_fields :liked_users, :offering_users
+      field :marque
+      field :modele
+      field :content
+      field :longueur
+      field :hauteur
+      field :largeur
+      field :couleur
+
+      field :images, :active_storage do
+        partial 'multi_image_upload'
+      end
+
+      field :images_remove do
+        visible false
+      end
+    end
+  end
+
+
+
+
+  # config.included_models = [ "Attachment", "Blob","Chatroom","Like","Message","Offer", "Product", "User" ]
+
+
   ## == CancanCan ==
   # config.authorize_with :cancancan
 
@@ -29,7 +56,7 @@ RailsAdmin.config do |config|
 
   ## == Gravatar integration ==
   ## To disable Gravatar integration in Navigation Bar set to false
-  # config.show_gravatar = true
+  config.show_gravatar = false
 
   config.actions do
     dashboard                     # mandatory

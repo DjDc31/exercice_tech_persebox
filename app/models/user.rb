@@ -7,8 +7,9 @@ class User < ApplicationRecord
   has_many :offers, dependent: :destroy
   has_many :chatrooms
   has_many :received_chatrooms, class_name: 'Chatroom', foreign_key: 'receiver_id'
-  has_many :read_messages
+  # has_many :read_messages
   has_many :messages_read, through: :read_messages, source: :message
+  has_one_attached :avatar
 
 
   validates :email, presence: true, uniqueness: true
@@ -16,5 +17,9 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :address, presence: true
   validates :description, length: { maximum: 500 }
   validates :date_birth, presence: true
+
+  def admin?
+    self.admin
+  end
 
 end

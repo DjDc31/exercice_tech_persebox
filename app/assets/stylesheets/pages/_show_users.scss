@@ -1,0 +1,26 @@
+.user-profile {
+  text-align: center;
+}
+
+.avatar-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center; /* Centrage horizontal */
+  align-items: center; /* Centrage vertical */
+}
+
+
+.user-avatar {
+  width: 100%; /* ajuster à la taille du conteneur */
+  height: 100%; /* ajuster à la taille du conteneur */
+  object-fit: cover; /* maintenir les proportions tout en remplissant le conteneur */
+}
+
+
+.edit-pro {
+  margin-top: 1%;
+  margin-bottom: 5%;
+}

@@ -14,8 +14,9 @@
 Message.destroy_all
 Like.destroy_all
 Chatroom.destroy_all
-Product.destroy_all
 Offer.destroy_all
+
+Product.destroy_all
 User.destroy_all
 
 
@@ -36,7 +37,7 @@ User.create!(
   description: 'This is a description for user1'
 )
 
-User.create!(
+lolo = User.create!(
   email: 'lolodu35@gmail.com',
   password: '123456',
   nickname: 'Lolo',
@@ -47,6 +48,9 @@ User.create!(
   date_birth: Date.new(1992, 1, 1),
   description: 'This is a description for user2'
 )
+
+file = URI.open('https://avatars.githubusercontent.com/u/131400108?v=4')
+lolo.avatar.attach(io: file, filename: 'lolo_freyer.jpg', content_type: 'image/jpg')
 
 puts "Creating Users..."
 # Créer de nouveaux utilisateurs

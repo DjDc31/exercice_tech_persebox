@@ -5,6 +5,14 @@ fr:
       - :month
       - :year
     month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
+  datetime:
+    distance_in_words:
+      x_minutes:
+        one: "environ une minute"
+        other: "environ %{count} minutes"
+      about_x_hours:
+        one: "environ une heure"
+        other: "environ %{count} heures"
   activerecord:
     models:
       message: "Message"
@@ -13,7 +21,21 @@ fr:
         content: "Le formulaire"
     errors:
       models:
+        user:
+          attributes:
+            current_password:
+              blank: "Le mot de passe actuel ne peut pas être vide."
         message:
           attributes:
             content:
               blank: "ne peut pas être vide"
+        product:
+          attributes:
+            marque:
+              blank: "est nécessaire"
+            modele:
+              blank: "est nécessaire"
+            content:
+              blank: "est nécessaire"
+            images:
+              blank: "doit être présent"

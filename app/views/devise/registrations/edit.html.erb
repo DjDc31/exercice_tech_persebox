@@ -3,6 +3,18 @@
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "account-form" }) do |f| %>
     <%= f.error_notification %>
 
+<div class="user-profile edit-pro">
+  <% if @user.avatar.attached? %>
+    <%= image_tag @user.avatar, class: "user-avatar" %>
+  <% else %>
+    <%= image_tag("avatar-default.jpg", class: "user-avatar") %>
+  <% end %>
+  <h1><%= @user.nickname %></h1>
+                <%= f.label :avatar %>
+                <%= f.file_field :avatar %>
+</div>
+
+
     <div class="row">
       <!-- Left Column for email and password -->
       <div class="col-md-6">
