@@ -17,6 +17,19 @@
       </div>
 
     <ul class="navbar-nav ms-auto">
+              <% if user_signed_in? %>
+                          <li class="nav-item notif">
+            <i class="fa-solid fa-bell" style="color: #919191;"></i>
+                        </li>
+
+                      <% else %>
+            <li class="nav-item">
+              <%= link_to new_user_session_path, class: "notif-ring" do %>
+                <i class="fa-solid fa-bell" style="color: #919191;"></i>
+                <span class="notif-badge"></span>
+              <% end %>
+            </li>
+              <% end %>
       <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
         <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Parcourir

@@ -38,4 +38,13 @@ Rails.application.routes.draw do
     resources :chatrooms, only: [:create]
   end
 
+  resources :alerts
+  delete 'users/:id/delete_alert/:alert_id', to: 'users#delete_alert', as: 'delete_alert'
+
+  resources :users, only: [:show] do
+    resources :alerts
+  end
+
+
+
 end

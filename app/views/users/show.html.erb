@@ -12,9 +12,114 @@
   <p><%= @offers.count %> offre(s)</p>
   <% if current_user == @user %>
   <p><%= link_to "Editer mon profil", edit_user_registration_path, class: "dropdown-item"%></p>
-  <% end %>
 </div>
 
+<h2>Mes Alertes:</h2>
+<div class="nav nav-tabs offers-table" id="nav-tab" role="tablist">
+  <a class="nav-link active" id="nav-alert-feed-tab" data-bs-toggle="tab" data-bs-target="#nav-alert-feed" role="tab" aria-controls="nav-alert-feed" aria-selected="true">Fil d'alerte</a>
+  <a class="nav-link" id="nav-manage-alerts-tab" data-bs-toggle="tab" data-bs-target="#nav-manage-alerts" role="tab" aria-controls="nav-manage-alerts" aria-selected="false">Gérer mes alertes</a>
+</div>
+
+<div class="tab-content" id="nav-tabContent" style="margin-left: 10%; margin-right: 10%;">
+  <div class="tab-pane fade show active" id="nav-alert-feed" role="tabpanel" aria-labelledby="nav-alert-feed-tab">
+    <% if @alerts.any? %>
+<% @alerts.each do |alert| %>
+  <h3>Alerte : <%= alert.keyword %></h3>
+  <% matching_offers = alert.find_matching_offers %>
+  <% if matching_offers.any? %>
+    <table class="offers-table">
+      <tr>
+        <th></th> <!-- colonne pour l'image du prdt -->
+        <th>Marque</th>
+        <th>Produit</th>
+        <th>Prix</th>
+        <th>Extra</th>
+        <th>Langue</th>
+        <th>État</th>
+      </tr>
+      <% matching_offers.each do |offer| %>
+        <tr>
+          <td class="product-image">
+            <% if offer.product.images.first %>
+              <%= image_tag url_for(offer.product.images.first), alt: offer.product.modele %>
+            <% end %>
+          </td>
+          <td><%= offer.product.marque %></td>
+          <td><%= link_to offer.product.modele, product_path(offer.product) %></td>
+          <td><%= number_to_currency(offer.price, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></td>
+          <td><%= offer.extra ? '<i class="fa-solid fa-check" style="color: #00f900;"></i>'.html_safe : '<i class="fa-solid fa-xmark" style="color: #000000;"></i>'.html_safe %></td>
+          <td>
+            <% language_option = Offer.language_options.find {|option| option[1] == offer.language } %>
+            <%= language_option ? language_option[0] : offer.language %>
+          </td>
+          <td><%= Offer.formatted_etat_options[offer.etat] %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p>Aucune offre correspondante trouvée.</p>
+  <% end %>
+<% end %>
+
+</div>
+<% end %>
+
+  </div>
+  <div class="tab-pane fade" id="nav-manage-alerts" role="tabpanel" aria-labelledby="nav-manage-alerts-tab" style="margin-left: 10%; margin-right: 10%;">
+<%= form_with model: [current_user, @new_alert], remote: true do |form| %>
+  <div class="form-column">
+    <%= form.label :keyword, "Mot-clef:" %>
+    <%= form.text_field :keyword, required: true, placeholder: "iPhone, Nintendo, etc." %>
+  </div>
+  <div class="form-column">
+    <%= form.label :max_price, "Prix Max.(€):" %>
+    <%= form.number_field :max_price, placeholder: "22" %>
+  </div>
+  <div class="form-column">
+    <%= form.label :language, "Langue:" %>
+    <%= form.select :language, options_for_select([["Toutes les langues", nil]] + Offer.language_options) %>
+  </div>
+  <div class="form-column">
+    <%= form.submit "Créer une alerte" %>
+  </div>
+<% end %>
+
+
+
+  <h3>La liste de vos alertes actives:</h3>
+  <table class="alerts-table">
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th> <!-- colonne pour les boutons d'édition et de suppression -->
+  </tr>
+    <% @alerts.each do |alert| %>
+        <tr>
+            <td><%= alert.keyword %></td>
+            <td><%= number_to_currency(alert.max_price, unit: "€", separator: ",", delimiter: ".", format: "%n %u") %></td>
+            <td><%= alert.language %></td>
+            <td>
+                <div class="edit-form" style="display: none;">
+                    <%= form_with model: [current_user, alert], remote: true do |form| %>
+                        <div class="form-column">
+                            <%= form.label :keyword, "Mot-clef:" %>
+                            <%= form.text_field :keyword, value: alert.keyword, required: true, placeholder: "iPhone, Nintendo, etc." %>
+                        </div> <!-- champs du formulaire -->
+                        <%= form.submit "Mettre à jour" %>
+                    <% end %>
+                </div>
+                <button class="edit-button">
+                    <i class="fa-solid fa-pencil" style="color: #000000;"></i>
+                </button>
+              <%= link_to '<i class="fa-solid fa-trash-can" style="color: #000000;"></i>'.html_safe, delete_alert_path(id: current_user.id, alert_id: alert.id), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cette alerte?" }, class: 'button-class' %>
+            </td>
+        </tr>
+    <% end %>
+    </table>
+</div>
+
+<% else %>
 
 
 <table class="offers-table">
@@ -62,3 +167,16 @@
     </tr>
   <% end %>
 </table>
+  <% end %>
+
+<script>document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.edit-button').forEach(function(button) {
+    button.addEventListener('click', function() {
+      this.previousElementSibling.style.display = 'block'; // Afficher le formulaire
+      this.style.display = 'none'; // Cacher le bouton Éditer
+    });
+  });
+
+  // Ajoutez le code pour gérer la réponse AJAX si nécessaire
+});
+</script>
