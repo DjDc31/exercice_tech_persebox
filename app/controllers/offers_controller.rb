@@ -5,7 +5,13 @@ class OffersController < ApplicationController
 
   def show
     @offer = Offer.find(params[:id])
+
+    alert = Alert.find_by(id: params[:alert_id])
+    if alert
+      ReadOffer.create(user: current_user, alert: alert, offer: @offer)
+    end
   end
+
 
   def new
     @offer = Offer.new

@@ -16,20 +16,75 @@
         <% end %>
       </div>
 
-    <ul class="navbar-nav ms-auto">
-              <% if user_signed_in? %>
-                          <li class="nav-item notif">
+  <ul class="navbar-nav ms-auto">
+  <% if user_signed_in? %>
+    <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
+      <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <% all_matching_alerts_and_offers = (@alerts || []).flat_map do |alert|
+          alert.find_matching_offers.select { |offer| offer.created_at > alert.created_at }.map { |offer| [alert, offer] }
+        end %>
+        <% unread_alerts_count = all_matching_alerts_and_offers.count { |alert, _| !alert.read? } %>
+        <% if unread_alerts_count > 0 %>
+          <div class="notif-ring">
             <i class="fa-solid fa-bell" style="color: #919191;"></i>
-                        </li>
+            <span class="notif-badge"></span>
+          </div>
+        <% else %>
+          <i class="fa-solid fa-bell" style="color: #919191;"></i>
+        <% end %>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end notification-dropdown" aria-labelledby="browseDropdown" data-dropdownnav-target="dropdownMenu">
+<li style="margin-left: 10px; margin-bottom: -20px;">
+  <h6 style="margin-bottom: 30px;">Notifications:</h6>
+  <%# <% unread_alerts_count = @alerts.sum { |alert| alert.unread_offers.count } %>
+  <%# <% if unread_alerts_count > 0 %>
+    <%# <span class="notification-badge"><%= unread_alerts_count</span> %>
+  <%# end %>
+</li>
 
-                      <% else %>
-            <li class="nav-item">
-              <%= link_to new_user_session_path, class: "notif-ring" do %>
-                <i class="fa-solid fa-bell" style="color: #919191;"></i>
-                <span class="notif-badge"></span>
-              <% end %>
-            </li>
-              <% end %>
+        <div class="list-notif">
+          <% all_matching_alerts_and_offers.sort_by! { |alert, offer| -offer.created_at.to_i } %>
+          <% if all_matching_alerts_and_offers.any? %>
+<% all_matching_alerts_and_offers.each do |alert, offer| %>
+  <li>
+    <a href="<%= offer_path(offer, alert_id: alert.id) %>" class="notif-card-link">
+      <div class="notif-2-card <%= 'unread-notification' unless alert.offer_read?(offer) %>">
+                    <div class="notif-creation-date">
+                      <%= offer.created_at.strftime("%d/%m/%Y %H:%M") %>
+                    </div>
+                    <div class="notif-image">
+                      <% if offer.product.images.first %>
+                        <%= image_tag url_for(offer.product.images.first), alt: offer.product.modele %>
+                      <% end %>
+                    </div>
+                    <div class="notif-details">
+                      <p><strong>1 nouvelle offre</strong> correspond à votre alerte <strong><%= alert.keyword %></strong></p>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            <% end %>
+          <% else %>
+            <li style="margin-left: 10px; margin-top: 20px; font-size: 13px;">Aucune alerte pour le moment...</li>
+          <% end %>
+        </div>
+        <li>
+          <%= link_to user_path(current_user) do %>
+            <i class="fa-solid fa-gear" style= "color: #000000; margin-left: 5px; margin-top: 10px;"></i>
+          <% end %>
+        </li>
+      </ul>
+    </li>
+  <% else %>
+    <li class="nav-item">
+      <%= link_to new_user_session_path, class: "notif-ring" do %>
+        <i class="fa-solid fa-bell" style="color: #919191;"></i>
+        <span class="notif-badge"></span>
+      <% end %>
+    </li>
+  <% end %>
+
+
       <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
         <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Parcourir
@@ -44,12 +99,13 @@
         </ul>
       </li>
 
-      <li class="nav-item">
-        <% link_to "À propos", "#", class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <% link_to "Aide", "#", class: "nav-link" %>
-      </li>
+        <li class="nav-item">
+          <% link_to "À propos", "#", class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <% link_to "Aide", "#", class: "nav-link" %>
+        </li>
+
       <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
         <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <% if user_signed_in? %>

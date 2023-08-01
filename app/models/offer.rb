@@ -7,6 +7,8 @@ class Offer < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }
   validates_inclusion_of :etat, in: %w[Neuf_jamais_utilisee Neuf_deja_utilisee Tres_bon_etat Bon_etat Satisfaisant Abime]
   validates :content, length: { maximum: 500 }
+  has_many :read_offers
+
 
 
   def self.formatted_etat_options
@@ -27,6 +29,7 @@ class Offer < ApplicationRecord
   def self.formatted_etat_select_options
     formatted_etat_options.map { |value, text| [text, value] }
   end
+
 
 
 
@@ -70,5 +73,10 @@ class Offer < ApplicationRecord
 
     ]
   end
+
+  def self.language_name(code)
+    language_options.find { |name, c| c == code }&.first || 'Non spécifié'
+  end
+
 
 end

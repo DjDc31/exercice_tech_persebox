@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :messages_read, through: :read_messages, source: :message
   has_one_attached :avatar
   has_many :alerts
+  has_many :read_offers
+
 
 
   validates :email, presence: true, uniqueness: true

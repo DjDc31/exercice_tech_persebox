@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_31_112924) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_01_153248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_112924) do
     t.boolean "extra"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "read", default: false
     t.index ["user_id"], name: "index_alerts_on_user_id"
   end
 
@@ -123,6 +124,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_112924) do
     t.index ["user_id"], name: "index_read_messages_on_user_id"
   end
 
+  create_table "read_offers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "alert_id", null: false
+    t.bigint "offer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "read", default: false
+    t.index ["alert_id"], name: "index_read_offers_on_alert_id"
+    t.index ["offer_id"], name: "index_read_offers_on_offer_id"
+    t.index ["user_id"], name: "index_read_offers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -155,4 +168,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_112924) do
   add_foreign_key "products", "offers"
   add_foreign_key "read_messages", "messages"
   add_foreign_key "read_messages", "users"
+  add_foreign_key "read_offers", "alerts"
+  add_foreign_key "read_offers", "offers"
+  add_foreign_key "read_offers", "users"
 end

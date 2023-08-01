@@ -28,6 +28,7 @@
 .row-form {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 45px;
 }
 
 .row-form .form-column {
@@ -37,4 +38,147 @@
 
 .row-form label {
   display: block;
+}
+
+.alerte-h2 {
+  margin-left: 5%;
+}
+
+#nav-manage-alerts-tab {
+  color:black
+}
+
+#nav-manage-alerts-tab:hover {
+  color: $box;
+}
+
+#nav-alert-feed-tab {
+  color:black
+}
+
+#nav-alert-feed-tab:hover {
+  color: $box;
+}
+
+.icon-button-alert {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.edit-button {
+  margin-right: 7%;
+}
+
+.alert-submit-button {
+  background-color: #acacac;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.alert-submit-button:hover {
+  background-color: $box;
+  opacity: 0.8;
+}
+
+.custom-select {
+  padding: 5px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #495057;
+  background-color: #f8f9fa;
+  -webkit-appearance: none; /* Pour retirer l'apparence par défaut sur Chrome et Safari */
+  -moz-appearance: none;    /* Pour retirer l'apparence par défaut sur Firefox */
+  appearance: none;         /* Pour retirer l'apparence par défaut sur d'autres navigateurs */
+}
+.custom-select:focus {
+  border-color: #007BFF;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.offer-card {
+  display: flex;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+}
+
+.offer-image {
+  flex: 1;
+  max-width: 150px;
+  margin-right: 20px;
+}
+
+.offer-image img {
+  max-width: 140px;
+  max-height: 130px;
+  border-radius: 5px;
+}
+
+.offer-details {
+  flex: 3;
+}
+
+.offer-details p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.offer-details p .fa-solid {
+  font-size: 18px;
+}
+
+.offer-details a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.offer-details a:hover {
+  text-decoration: underline;
+}
+
+.offer-creation-date {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.seller-info {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.seller-nickname {
+  margin-right: 5px;
+  color: #666;
+}
+
+.seller-avatar {
+  width: 20px; /* adjust as needed */
+  height: 20px; /* adjust as needed */
+  border-radius: 50%;
 }
