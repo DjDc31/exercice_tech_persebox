@@ -23,9 +23,22 @@ fr:
       models:
         user:
           attributes:
+            email:
+              blank: "L'email ne peut pas être vide."
+            password:
+              blank: "Le mot de passe ne peut pas être vide."
+            nickname:
+              blank: "Le pseudo ne peut pas être vide."
+            first_name:
+              blank: "Le prénom ne peut pas être vide."
+            last_name:
+              blank: "Le nom ne peut pas être vide."
+            address:
+              blank: "L'adresse ne peut pas être vide."
             current_password:
               blank: "Le mot de passe actuel ne peut pas être vide."
         message:
+          blank: "ne peut pas être vide."
           attributes:
             content:
               blank: "ne peut pas être vide"
