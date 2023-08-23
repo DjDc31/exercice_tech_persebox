@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_01_153248) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_23_184546) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -101,6 +101,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_01_153248) do
     t.index ["user_id"], name: "index_offers_on_user_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "offer_id", null: false
+    t.decimal "amount", null: false
+    t.string "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_payments_on_offer_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "marque"
     t.string "modele"
@@ -151,6 +162,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_01_153248) do
     t.date "date_birth"
     t.text "description"
     t.boolean "admin", default: false, null: false
+    t.string "telephone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -165,6 +177,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_01_153248) do
   add_foreign_key "messages", "users"
   add_foreign_key "offers", "products"
   add_foreign_key "offers", "users"
+  add_foreign_key "payments", "offers"
+  add_foreign_key "payments", "users"
   add_foreign_key "products", "offers"
   add_foreign_key "read_messages", "messages"
   add_foreign_key "read_messages", "users"

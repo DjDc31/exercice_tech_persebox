@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
   devise_for :users, controllers: { registrations: 'registrations' }
   root to: "pages#home"
 
@@ -44,5 +45,17 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :alerts
   end
+
+  resources :orders, only: [:new, :create] do
+    collection do
+      post :create_checkout_session
+      get :success
+      get :cancel
+    end
+  end
+
+  get '/thank_you', to: 'pages#thank_you', as: 'thank_you'
+
+
 
 end

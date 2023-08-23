@@ -1,8 +1,19 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
+  config.action_mailer.default_url_options = { host: "http://www.persebox.com" }
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :domain => 'persebox.com',  # Remplacez par votre domaine
+    :user_name => 'apikey', # Ceci est le mot "apikey", pas votre ID SendGrid.
+    :password => ENV['SENDGRID_KEY'],
+    :authentication => 'plain',
+    :enable_starttls_auto => true
+  }
+
 
   # Code is not reloaded between requests.
   config.cache_classes = true

@@ -9,12 +9,15 @@ gem "rails", "~> 7.0.5"
 # ADD FOR CONFIG LAURENE CYRILLE
 gem "cloudinary"
 gem 'stripe'
+gem 'stripe_event'
 gem 'table_print'
 gem 'faker'
 
 gem 'jquery-rails'
 gem 'money-rails', '~>1.14'
 gem "rails_admin", "3.0"
+gem 'sendgrid-ruby'
+gem "letter_opener", group: :development
 
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
