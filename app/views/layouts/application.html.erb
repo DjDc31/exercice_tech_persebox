@@ -29,6 +29,11 @@
     <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
 
+    <!-- Google Maps Autocomplete-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cA" async defer></script>
+
+    <%# <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> %>
+
   </head>
 
   <body>

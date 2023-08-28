@@ -24,6 +24,7 @@ fr:
         user:
           attributes:
             email:
+              invalid: "n'est pas au bon format"
               blank: "L'email ne peut pas être vide."
             password:
               blank: "Le mot de passe ne peut pas être vide."

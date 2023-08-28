@@ -34,11 +34,6 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
-
-  resources :offers do
-    resources :chatrooms, only: [:create]
-  end
-
   resources :alerts
   delete 'users/:id/delete_alert/:alert_id', to: 'users#delete_alert', as: 'delete_alert'
 
@@ -51,11 +46,12 @@ Rails.application.routes.draw do
       post :create_checkout_session
       get :success
       get :cancel
+      get :search_points_relais
     end
   end
 
-  get '/thank_you', to: 'pages#thank_you', as: 'thank_you'
 
+  get '/thank_you', to: 'pages#thank_you', as: 'thank_you'
 
 
 end

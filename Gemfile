@@ -19,6 +19,13 @@ gem "rails_admin", "3.0"
 gem 'sendgrid-ruby'
 gem "letter_opener", group: :development
 
+gem 'digest'
+gem 'nokogiri'
+
+
+# Comm API MondialRelay
+gem 'savon', '~> 2.12'
+
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"

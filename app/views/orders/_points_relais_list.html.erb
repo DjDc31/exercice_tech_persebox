@@ -1,0 +1,17 @@
+<% if @points_relais.present? %>
+  <ul class="points-relais-list">
+    <% @points_relais.each do |point| %>
+      <li class="point-relais-item">
+        <span class="point-relais-address">
+          <%= point[:lg_adr1] %>, <%= point[:lg_adr3] %>, <%= point[:cp] %> <%= point[:ville] %>
+        </span>
+        <span class="point-relais-distance"><%= point[:distance] %>m</span>
+        <%= link_to "Voir plus de détails", point[:url_plan], class: "point-relais-link" %>
+        <br>
+        <span class="point-relais-id">id: <%= point[:num] %></span>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Aucun point relais trouvé.</p>
+<% end %>

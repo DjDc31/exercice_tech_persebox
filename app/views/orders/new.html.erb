@@ -5,19 +5,77 @@
 <h3>Étape 1/2</h3>
 <h4>Mode de remise</h4>
 
-<div class="row">
+<div class="row" data-controller="autocomplete">
   <div class="col-md-6">
     <div class="card mb-4">
       <div class="card-body">
         <h5 class="card-title">Trouver les points relais</h5>
         <p class="card-text">Trouver les points relais autour de :</p>
 
-        <%= form_tag do %>
+        <%= simple_form_for search_points_relais_orders_path, remote: true do |f| %>
             <div class="mb-3">
-                <%= text_field_tag :address, params[:address].presence || current_user&.address, class: 'form-control', placeholder: 'Adresse' %>
-            </div>
+              <%= f.input :address,
+                  required: true,
+                  input_html: {
+                      value: params[:address].presence || current_user&.address,
+                      id: "autocomplete_address",
+                      data: { autocomplete_target: "address" }
+                  },
+                  label: 'Adresse',
+                  label_html: { class: "form-label" },
+                  wrapper_html: { class: "form-field" } %>
+
+              <%= f.input :latitude,
+                  as: :hidden,
+                  input_html: {
+                      value: params[:latitude].presence || current_user&.latitude,
+                      id: "input_latitude",
+                      data: { autocomplete_target: "latitude" }
+                  } %>
+
+              <%= f.input :longitude,
+                  as: :hidden,
+                  input_html: {
+                      value: params[:longitude].presence || current_user&.longitude,
+                      id: "input_longitude",
+                      data: { autocomplete_target: "longitude" }
+                  } %>
+
+              <%= f.input :postal_code,
+                  as: :hidden,
+                  label: 'Code postal',
+                  input_html: {
+                      value: params[:postal_code].presence || current_user&.postal_code,
+                      id: "input_postal_code",
+                      readonly: true,
+                      data: { autocomplete_target: "postalCode" }
+                  } %>
+
+              <%= f.input :city,
+                  as: :hidden,
+                  label: 'Ville',
+                  input_html: {
+                      value: params[:city].presence || current_user&.city,
+                      id: "input_city",
+                      readonly: true,
+                      data: { autocomplete_target: "city" }
+                  } %>
+
+                </div>
+            <%# <%= submit_tag 'Chercher', class: 'btn btn-primary' %>
         <% end %>
     </div>
+<%= link_to "Rechercher les points relais", search_points_relais_orders_path, id: "search-points-relais-link", remote: true %>
+
+<div class="points-relais-list">
+  <!-- Si un point relais est sélectionné, affichez-le ici -->
+</div>
+
+<div class="point-relais-display">
+  <!-- Détails du point relais sélectionné -->
+</div>
+
+<div id="points-relais"></div>
 </div>
 
   <div class="card mb-4">
@@ -27,13 +85,18 @@
 
           <%= form_tag  do %>
               <div class="mb-3">
+                          Prénom
+
                   <%= text_field_tag :first_name, params[:first_name].presence || current_user&.first_name, class: 'form-control', placeholder: 'Prénom' %>
               </div>
               <div class="mb-3">
+                Nom
                   <%= text_field_tag :last_name, params[:last_name].presence || current_user&.last_name, class: 'form-control', placeholder: 'Nom' %>
               </div>
               <div class="mb-3">
+                Numéro de téléphone
                   <%= text_field_tag :telephone, params[:telephone].presence || current_user&.telephone, class: 'form-control', placeholder: 'Numéro de téléphone' %>
+                Recevoir un SMS pour l’arrivée de votre colis ou votre code de locker
               </div>
           <% end %>
           </div>
@@ -79,35 +142,23 @@
 </div>
 
 </div>
-<%= button_to "Etape 2/2: Payer", create_checkout_session_orders_path, method: :post, id: "stripe-button", action: create_checkout_session_orders_path, class: 'btn btn-success mt-3' %>
+<%= button_to "Etape 2/2: Payer", create_checkout_session_orders_path,
+      method: :post,
+      id: "stripe-button",
+      action: create_checkout_session_orders_path,
+      class: 'btn btn-success mt-3',
+      data: { controller: "stripe-button",
+              :"stripe-button_offer_id" => @offer.id,
+              :"stripe-button_publishable_key" => Rails.configuration.stripe[:publishable_key]} %>
 </div>
 
 <script>
-  const stripeButton = document.getElementById("stripe-button");
-  if (stripeButton) {
-    stripeButton.addEventListener("click", async (e) => {
-      e.preventDefault();
-      console.log(stripeButton.getAttribute('action'));
-      const response = await fetch(stripeButton.getAttribute('action'), {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'X-CSRF-Token': document.querySelector('[name="csrf-token"]').content
-        },
-        body: JSON.stringify({
-          offer_id: <%= @offer.id %> // Envoyer l'ID de l'offre avec la requête
-        })
-      });
-      const data = await response.json();
-      const stripe = Stripe('<%= Rails.configuration.stripe[:publishable_key] %>');
-      stripe.redirectToCheckout({
-          sessionId: data.id
-      }).then(function (result) {
-          console.error(result.error.message);
-      }).catch(error => {
-          console.error('Error with Stripe:', error);
-      });
+$("#search-points-relais-link").click(function(e) {
+    e.preventDefault();
+    $.get($(this).attr("href"), function(data) {
+        $("#points-relais").html(data);
     });
-  }
+});
+
+
 </script>
