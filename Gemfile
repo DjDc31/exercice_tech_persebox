@@ -6,6 +6,11 @@ ruby "3.1.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.5"
 
+# ADD FOR EX_TECHNIQUE
+gem 'will_paginate'
+gem 'will_paginate-bootstrap4'
+gem 'tailwindcss-rails'
+
 # ADD FOR CONFIG LAURENE CYRILLE
 gem "cloudinary"
 gem 'stripe'

@@ -1,10 +1,12 @@
+
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "PERSEBOX.png", alt: "Logo" %>
     <% end %>
+    <div class="d-none d-md-block">
 
-      <div class="search-form-container">
+      <div class="search-form-container" data-controller="search">
         <%= form_with url: products_path, method: 'get', class: "d-flex" do %>
           <%= text_field_tag :query,
               params[:query],
@@ -15,6 +17,9 @@
           <% end %>
         <% end %>
       </div>
+      </div>
+
+        <div class="d-none d-lg-block" style="margin-left: 20%">
 
   <ul class="navbar-nav ms-auto">
   <% if user_signed_in? %>
@@ -126,6 +131,11 @@
             <i class="far fa-regular fa-heart default-color icon-navbar"></i>
           <% end %>
       </li>
+                      </div>
+
+
+  <ul class="navbar-nav ms-auto">
+
       <li class="nav-item">
         <%= link_to chatrooms_path, class: "nav-link" do %>
           <i class="far fa-comment fa-fw default-color icon-navbar"></i>
@@ -135,20 +145,26 @@
       <% end %>
     </ul>
 
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
+                          <div class="d-none d-md-block">
+
     </button>
+                    </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
-
         <% if user_signed_in? %>
 
           <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
           <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa-regular fa-circle-user default-color icon-navbar"></i>
+                    <div class="d-none d-md-block">
+                      <i class="fa-regular fa-circle-user default-color icon-navbar"></i>
+                    </div>
           </a>
-        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" data-dropdownnav-target="dropdownMenu">
+
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" data-dropdownnav-target="dropdownMenu" >
             <li><%= link_to "Mon compte", user_path(current_user), class: "dropdown-item"%></li>
             <li><%= link_to "Mes achats", "#", class: "dropdown-item"%></li>
             <li><%= link_to "Mes ventes", my_offers_path, class: "dropdown-item"%></li>
@@ -159,6 +175,7 @@
             <li><%= link_to "Déconnexion", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %></li>
           </ul>
         </li>
+              </button>
 
         <% else %>
 
@@ -175,3 +192,15 @@
     </div>
   </div>
 </div>
+
+
+<script>
+$(document).ready(function() {
+
+  var productNames = <%= raw (@products.pluck(:modele) + @products.pluck(:marque)).uniq.to_json %>;
+
+  $(".input-search").autocomplete({
+    source: productNames
+  });
+});
+</script>
