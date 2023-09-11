@@ -23,11 +23,11 @@ cd exercice_tech_persebox
 ```
 
 Ce script va :
-. Créer un fichier .env avec vos variables d'environnement.
-. Installer toutes les dépendances nécessaires.
-. Créer la base de données.
-. Exécuter les migrations.
-. Charger les données initiales (seeds).
+- Créer un fichier .env avec vos variables d'environnement.
+- Installer toutes les dépendances nécessaires.
+- Créer la base de données.
+- Exécuter les migrations.
+- Charger les données initiales (seeds).
 
 3. Ouvrir dans le navigateur
 Une fois que le script s'est exécuté, votre navigateur par défaut devrait s'ouvrir et vous diriger vers http://localhost:3000.
