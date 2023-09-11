@@ -11,15 +11,17 @@ Git doit également être installé.
 
 Pour installer et configurer le projet sur votre machine locale, suivez les étapes suivantes :
 1. Clonage du dépôt
-bash
-Copy code
+
+```shell
 git clone git@github.com:DjDc31/exercice_tech_persebox.git
 cd exercice_tech_persebox
-
+```
 2. Exécution du script d'installation
-bash
-Copy code
+
+```shell
 ./install.sh
+```
+
 Ce script va :
 . Créer un fichier .env avec vos variables d'environnement.
 . Installer toutes les dépendances nécessaires.
@@ -41,30 +43,24 @@ Si vous rencontrez des problèmes ou si vous avez des suggestions, n'hésitez pa
 
 
 
-TUTO INSTAL :
-chmod +x install.sh
-
-echo "CLOUDINARY_URL=cloudinary://567375167474919:uA-8w6PHLWxxk4Cxoh1PUG_LyEA@dxe8z0dsb
-
-STRIPE_SECRET_KEY=xxxxxxxxxxxx
-STRIPE_PUBLISHABLE_KEY=xxxxxxxxxxxx
-STRIPE_SIGNING_SECRET=xxxxxxxxxxxx
-
-SENDGRID_KEY=xxxxxxxxxxxx
-
-GOOGLE_MAPS_API_KEY=xxxxxxxxxxxx
-" > .env
 
 
-Installer les dépendances :
+### En cas de difficulté avec l'installation automatique :
+
+Vous pouvez aussi installer le site manuellement en collant ce code dans votre terminal :
+```shell
+#Installer les dépendances
 bundle install
 
-Créer la base de données :
-
+#Créer la base de données
 rails db:create
-Exécuter les migrations :
+
+#Exécuter les migrations
 rails db:migrate
-Charger les seed :
+
+#Charger les seeds
 rails db:seed
 
-lancement de rails s
+#lancement
+rails s
+```
