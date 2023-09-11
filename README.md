@@ -32,6 +32,14 @@ Ce script va :
 3. Ouvrir dans le navigateur
 Une fois que le script s'est exécuté, votre navigateur par défaut devrait s'ouvrir et vous diriger vers http://localhost:3000.
 
+4. Lancer les Tests
+
+Vous pouvez maintenant lancer les tests permettant de confirmer la bonne mise en place de la pagination dans l'index:
+
+```shell
+rspec
+```
+
 ## Avertissement
 
 Pour des raisons de sécurité, seul la clé API de Cloudinary sera fourni pour ce délivrable. Les clés Stripe, Sendgrid et Google_maps ne seront pas fournis à cet occasion.
