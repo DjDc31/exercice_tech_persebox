@@ -312,6 +312,8 @@ GEM
       activesupport (>= 3.1)
       stripe (>= 2.8, < 9)
     table_print (1.5.7)
+    tailwindcss-rails (2.0.30-arm64-darwin)
+      railties (>= 6.0.0)
     thor (1.2.2)
     tilt (2.2.0)
     timeout (0.4.0)
@@ -343,6 +345,9 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    will_paginate (3.3.1)
+    will_paginate-bootstrap4 (0.2.2)
+      will_paginate (~> 3.0, >= 3.0.0)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.11)
@@ -383,10 +388,13 @@ DEPENDENCIES
   stripe
   stripe_event
   table_print
+  tailwindcss-rails
   turbo-rails
   tzinfo-data
   web-console
   webdrivers
+  will_paginate
+  will_paginate-bootstrap4
 
 RUBY VERSION
    ruby 3.1.2p20

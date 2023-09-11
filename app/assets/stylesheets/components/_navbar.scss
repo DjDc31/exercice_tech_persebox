@@ -250,3 +250,7 @@ width: 342px;
   padding: 3px 6px;
   font-size: 12px;
 }
+
+.ui-autocomplete {
+  z-index: 1050 !important;
+}

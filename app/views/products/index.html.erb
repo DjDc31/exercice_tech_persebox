@@ -65,18 +65,20 @@
     </div>
 
     <div class="col-10">
-      <div class="products-container">
+      <div class="products-container row">
         <% if @products.empty? %>
-  <p>Aucun produit trouvé.</p>
-<% else %>
-  <% @products.each do |product| %>
-    <div>
-      <%= render partial: 'shared/card', locals: { product: product } %>
-      <br>
-    </div>
-  <% end %>
-<% end %>
-
+        <p>Aucun produit trouvé.</p>
+      <% else %>
+        <% @products.each do |product| %>
+          <div class="col-lg-2 col-md-4 col-sm-6">
+            <%= render partial: 'shared/card', locals: { product: product } %>
+            <br>
+          </div>
+        <% end %>
+      <% end %>
+      </div>
+          <div class="text-center">
+    <%= will_paginate @products, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
       </div>
     </div>
   </div>

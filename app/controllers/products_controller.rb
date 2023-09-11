@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
       @products = @products.where(sql_subquery, query: "%#{params[:query]}%").distinct
     end
     sort_products
+    @products = @products.paginate(page: params[:page], per_page: 12)
   end
 
   def show
@@ -61,5 +62,4 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:marque, :modele, :content, :longueur, :hauteur, :largeur, :couleur, images: [])
   end
-
 end
