@@ -2,6 +2,13 @@
 
 Persebox.com est une application web de vente de boîtes de produits pour collectionneurs et revendeurs. Que vous soyez un collectionneur de cartouches de Game Boy, de consoles PlayStation, de maroquinerie de grandes marques ou de tout autre objet de collection, vous êtes au bon endroit !
 
+## Le Projet : 
+- [Lien du projet](http://localhost:3000/products?sort=price_asc&commit=trier)
+- Un UX/UI inspiré des plus grands, notamment de [stockX](https://stockx.com/fr-fr/search/sneakers?s=lo).
+- Un design responsive
+- Des formulaires de recherche équipés de l'auto-complete
+- Les tests RSpec
+
 ## Prérequis
 
 Assurez-vous d'avoir Ruby et Rails installés sur votre machine.
