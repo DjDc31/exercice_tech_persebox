@@ -5,6 +5,7 @@ Persebox.com est une application web de vente de boîtes de produits pour collec
 ## Le Projet : 
 - [Lien du projet](http://localhost:3000/products?sort=price_asc&commit=trier)
 - Un UX/UI inspiré des plus grands, notamment de [stockX](https://stockx.com/fr-fr/search/sneakers?s=lo).
+- [Lien du Figma](https://www.figma.com/file/xMNma6iAdy7ucEfk0FWdAp/Untitled?type=design&node-id=0%3A1&mode=design&t=1b3qIwmDifgTRjn1-1)
 - Un design responsive
 - Des formulaires de recherche équipés de l'auto-complete
 - Les tests RSpec
