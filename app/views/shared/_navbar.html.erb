@@ -4,8 +4,8 @@
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "PERSEBOX.png", alt: "Logo" %>
     <% end %>
-    <div class="d-none d-md-block">
 
+    <div id="search-container" class="d-none d-md-block">
       <div class="search-form-container" data-controller="search">
         <%= form_with url: products_path, method: 'get', class: "d-flex" do %>
           <%= text_field_tag :query,
@@ -17,13 +17,12 @@
           <% end %>
         <% end %>
       </div>
-      </div>
+    </div>
 
-        <div class="d-none d-lg-block" style="margin-left: 20%">
 
   <ul class="navbar-nav ms-auto">
   <% if user_signed_in? %>
-    <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
+    <li class="nav-item dropdown hover-dropdown d-none d-md-block" data-controller="dropdownnav">
       <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <% all_matching_alerts_and_offers = (@alerts || []).flat_map do |alert|
           alert.find_matching_offers.select { |offer| offer.created_at > alert.created_at }.map { |offer| [alert, offer] }
@@ -39,35 +38,35 @@
         <% end %>
       </a>
       <ul class="dropdown-menu dropdown-menu-end notification-dropdown" aria-labelledby="browseDropdown" data-dropdownnav-target="dropdownMenu">
-<li style="margin-left: 10px; margin-bottom: -20px;">
-  <h6 style="margin-bottom: 30px;">Notifications:</h6>
-  <%# <% unread_alerts_count = @alerts.sum { |alert| alert.unread_offers.count } %>
-  <%# <% if unread_alerts_count > 0 %>
-    <%# <span class="notification-badge"><%= unread_alerts_count</span> %>
-  <%# end %>
-</li>
+        <li style="margin-left: 10px; margin-bottom: -20px;">
+          <h6 style="margin-bottom: 30px;">Notifications:</h6>
+          <%# <% unread_alerts_count = @alerts.sum { |alert| alert.unread_offers.count } %>
+          <%# <% if unread_alerts_count > 0 %>
+            <%# <span class="notification-badge"><%= unread_alerts_count</span> %>
+          <%# end %>
+        </li>
 
         <div class="list-notif">
           <% all_matching_alerts_and_offers.sort_by! { |alert, offer| -offer.created_at.to_i } %>
           <% if all_matching_alerts_and_offers.any? %>
-<% all_matching_alerts_and_offers.each do |alert, offer| %>
-  <li>
-    <a href="<%= offer_path(offer, alert_id: alert.id) %>" class="notif-card-link">
-      <div class="notif-2-card <%= 'unread-notification' unless alert.offer_read?(offer) %>">
-                    <div class="notif-creation-date">
-                      <%= offer.created_at.strftime("%d/%m/%Y %H:%M") %>
-                    </div>
-                    <div class="notif-image">
-                      <% if offer.product.images.first %>
-                        <%= image_tag url_for(offer.product.images.first), alt: offer.product.modele %>
-                      <% end %>
-                    </div>
-                    <div class="notif-details">
-                      <p><strong>1 nouvelle offre</strong> correspond à votre alerte <strong><%= alert.keyword %></strong></p>
-                    </div>
-                  </div>
-                </a>
-              </li>
+          <% all_matching_alerts_and_offers.each do |alert, offer| %>
+            <li>
+              <a href="<%= offer_path(offer, alert_id: alert.id) %>" class="notif-card-link">
+                <div class="notif-2-card <%= 'unread-notification' unless alert.offer_read?(offer) %>">
+                              <div class="notif-creation-date">
+                                <%= offer.created_at.strftime("%d/%m/%Y %H:%M") %>
+                              </div>
+                              <div class="notif-image">
+                                <% if offer.product.images.first %>
+                                  <%= image_tag url_for(offer.product.images.first), alt: offer.product.modele %>
+                                <% end %>
+                              </div>
+                              <div class="notif-details">
+                                <p><strong>1 nouvelle offre</strong> correspond à votre alerte <strong><%= alert.keyword %></strong></p>
+                              </div>
+                            </div>
+              </a>
+            </li>
             <% end %>
           <% else %>
             <li style="margin-left: 10px; margin-top: 20px; font-size: 13px;">Aucune alerte pour le moment...</li>
@@ -81,7 +80,7 @@
       </ul>
     </li>
   <% else %>
-    <li class="nav-item">
+    <li class="nav-item d-none d-md-block">
       <%= link_to new_user_session_path, class: "notif-ring" do %>
         <i class="fa-solid fa-bell" style="color: #919191;"></i>
         <span class="notif-badge"></span>
@@ -90,7 +89,7 @@
   <% end %>
 
 
-      <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
+      <li class="nav-item dropdown hover-dropdown d-none d-md-block" data-controller="dropdownnav">
         <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Parcourir
         </a>
@@ -111,7 +110,7 @@
           <% link_to "Aide", "#", class: "nav-link" %>
         </li>
 
-      <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
+      <li class="nav-item dropdown hover-dropdown d-none d-md-block" data-controller="dropdownnav">
         <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="browseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <% if user_signed_in? %>
           <%# <i class="fa-solid fa-plus default-color icon-navbar"></i> %>
@@ -131,7 +130,6 @@
             <i class="far fa-regular fa-heart default-color icon-navbar"></i>
           <% end %>
       </li>
-                      </div>
 
 
   <ul class="navbar-nav ms-auto">
@@ -146,12 +144,12 @@
     </ul>
 
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <%# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
                           <div class="d-none d-md-block">
 
     </button>
-                    </div>
+                    </div> %>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
@@ -159,9 +157,7 @@
 
           <li class="nav-item dropdown hover-dropdown" data-controller="dropdownnav">
           <a class="nav-link dropdown-toggle dropdown-toggle-no-caret" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <div class="d-none d-md-block">
                       <i class="fa-regular fa-circle-user default-color icon-navbar"></i>
-                    </div>
           </a>
 
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" data-dropdownnav-target="dropdownMenu" >
