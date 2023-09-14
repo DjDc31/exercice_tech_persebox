@@ -1,6 +1,7 @@
 <% if params[:query].present? %>
   <div class="card-horizontal">
     <h1 class="header">Nos produits pour <%= params[:query] %></h1>
+
     <p>Achetez et vendez des articles correspondant à <%= params[:query] %> sur Persébox.</p>
   </div>
 <% else %>
@@ -8,6 +9,7 @@
     <h1 class="header">Nos produits</h1>
   </div>
 <% end %>
+
 
 <!-- Ajouter le sélecteur de tri ici -->
 <div class="sort-selector" style="float: right; margin-right: 65px;">
@@ -22,7 +24,7 @@
 
 <div class="container index-cont">
   <div class="row">
-    <div class="col-2">
+    <div class="col-2 d-none d-md-block">
       <!-- Votre contenu de la colonne de gauche -->
       <div class="brand">
         <h4><%= link_to 'Mode', products_path(query: 'Mode') %></h4>
@@ -35,7 +37,7 @@
       </div>
       <br>
       <div class="brand">
-        <h4><%= link_to 'Donnations', products_path(donations: true) %></h4>
+        <h4><%= link_to 'Donnations', '#' %></h4>
       </div>
       <br>
       <div class="brand">
