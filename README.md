@@ -49,8 +49,7 @@ rspec
 
 ## Avertissement
 
-Pour des raisons de sécurité, seul la clé API de Cloudinary sera fourni pour ce délivrable. Les clés Stripe, Sendgrid et Google_maps ne seront pas fournis à cet occasion.
-Des fonctionnalités comme l'inscription d'un nouvelle utilisateur, le paiement, la page de paiement, ... peuvent donc fortement présenter des erreurs au chargement.
+Pour des raisons de sécurité, seul la clé API de Cloudinary sera fournie pour ce délivrable. Les clés Stripe, Sendgrid et Google_maps ne seront pas fournies à cet occasion. Des fonctionnalités comme l'inscription d'un nouvel utilisateur, le paiement, la page de paiement, etc. peuvent donc fortement présenter des erreurs au chargement.
 
 ## Contribution
 
